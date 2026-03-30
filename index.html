@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gijin Kim — Senior SW Engineer &amp; Technical Strategist</title>
+  <meta name="description" content="25-year veteran software engineer at Hyosung TNS. ATM/Fintech, AI, Embedded Systems, POS/SCO, and technical leadership.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ── Variables ───────────────────────────────────────── */
+    :root {
+      --black:      #0d0d0d;
+      --dark:       #1a1a1a;
+      --dark2:      #252525;
+      --white:      #ffffff;
+      --off-white:  #f5f5f5;
+      --gray:       #888888;
+      --gray-lt:    #e2e2e2;
+      --blue:       #0047ff;
+      --blue-dk:    #0036cc;
+      --blue-lt:    #4d87ff;
+      --red:        #e8001a;
+      --red-lt:     #ff4d60;
+      --green:      #00a86b;
+      --green-lt:   #00d484;
+      --mono:       'JetBrains Mono', monospace;
+    }
+
+    /* ── Reset ───────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Utilities ───────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section { padding: 6rem 2rem; }
+
+    .sec-label {
+      font-family: var(--mono);
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: .875rem;
+    }
+    .sec-title {
+      font-size: clamp(1.75rem, 4vw, 2.625rem);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.1; margin-bottom: 3rem;
+    }
+    .sec-title .a-blue  { color: var(--blue); }
+    .sec-title .a-red   { color: var(--red); }
+    .sec-title .a-green { color: var(--green); }
+
+    /* scroll fade-in */
+    .fi { opacity: 0; transform: translateY(22px); transition: opacity .5s ease, transform .5s ease; }
+    .fi.vis { opacity: 1; transform: none; }
+
+    /* ── Navigation ──────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 60px;
+      background: rgba(13,13,13,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      display: flex; align-items: center;
+      padding: 0 2rem;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 900; color: var(--white);
+      letter-spacing: -.5px; text-decoration: none;
+    }
+    .nav-logo em { color: var(--blue-lt); font-style: normal; }
+
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.6); text-decoration: none;
+      font-size: .76rem; font-weight: 600;
+      letter-spacing: .75px; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue-lt); }
+
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .burger span { display: block; width: 22px; height: 2px; background: white; transition: .3s; }
+    .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    .nav-mobile {
+      display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 199;
+      background: rgba(13,13,13,.98); padding: 1.5rem 2rem;
+      flex-direction: column; gap: 1rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      color: rgba(255,255,255,.7); text-decoration: none;
+      font-size: .88rem; font-weight: 600;
+      letter-spacing: .5px; text-transform: uppercase;
+      padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex; align-items: center;
+      padding: 0 2rem; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,71,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,71,255,.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    #hero::after {
+      content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
+      background: linear-gradient(90deg, transparent, rgba(0,71,255,.06));
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding-top: 60px; position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(0,71,255,.14);
+      border: 1px solid rgba(0,71,255,.3);
+      border-radius: 2rem; padding: .375rem 1rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue-lt);
+      font-family: var(--mono); margin-bottom: 1.75rem;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.4; transform:scale(1.6); }
+    }
+    .hero-h1 {
+      font-size: clamp(2.75rem, 6.5vw, 5rem);
+      font-weight: 900; letter-spacing: -2.5px;
+      line-height: 1.03; color: var(--white); margin-bottom: 1.5rem;
+    }
+    .hero-h1 .c-blue  { color: var(--blue-lt); }
+    .hero-h1 .c-red   { color: var(--red); }
+    .hero-h1 .c-green { color: var(--green); }
+
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 300;
+      color: rgba(255,255,255,.55);
+      max-width: 560px; line-height: 1.8; margin-bottom: 2rem;
+    }
+    .hero-quote {
+      font-family: var(--mono); font-size: .82rem;
+      color: rgba(255,255,255,.35);
+      border-left: 2px solid var(--blue);
+      padding-left: 1rem; margin-bottom: 2.25rem;
+      line-height: 1.6;
+    }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: .625rem; margin-bottom: 3rem; }
+    .pill {
+      font-family: var(--mono); font-size: .73rem; font-weight: 600;
+      padding: .375rem .875rem; border-radius: 3px;
+    }
+    .p-blue  { background: rgba(0,71,255,.18);  color: var(--blue-lt);  border: 1px solid rgba(0,71,255,.25); }
+    .p-red   { background: rgba(232,0,26,.18);   color: var(--red-lt);   border: 1px solid rgba(232,0,26,.25); }
+    .p-green { background: rgba(0,168,107,.18);  color: var(--green-lt); border: 1px solid rgba(0,168,107,.25); }
+    .p-gray  { background: rgba(255,255,255,.06); color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.1); }
+
+    .hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .stat-n {
+      font-family: var(--mono); font-size: 2.25rem; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .stat-n em { color: var(--blue-lt); font-style: normal; }
+    .stat-l {
+      font-size: .67rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: .2rem;
+    }
+
+    /* hero photo */
+    .hero-photo-wrap {
+      flex-shrink: 0; position: relative;
+    }
+    .hero-photo {
+      width: 260px; height: 320px; object-fit: cover; object-position: top;
+      border-radius: 12px;
+      border: 1px solid rgba(0,71,255,.3);
+      display: block;
+      filter: grayscale(100%);
+    }
+    .hero-photo-badge {
+      position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--blue); color: white;
+      font-family: var(--mono); font-size: .68rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: .35rem 1rem; border-radius: 2rem;
+      white-space: nowrap;
+    }
+
+    /* ── About ───────────────────────────────────────────── */
+    #about { background: var(--off-white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start;
+    }
+    .about-text p {
+      font-size: 1rem; color: #444; line-height: 1.85; margin-bottom: 1.2rem;
+    }
+    .hl-list { display: flex; flex-direction: column; gap: .875rem; }
+    .hl-card {
+      background: white; border: 1px solid var(--gray-lt); border-radius: 10px;
+      padding: 1.125rem 1.375rem; display: flex; align-items: center; gap: 1rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .hl-card:hover { border-color: var(--blue); transform: translateX(5px); }
+    .hl-icon {
+      width: 42px; height: 42px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .ic-b { background: rgba(0,71,255,.1);   color: var(--blue); }
+    .ic-r { background: rgba(232,0,26,.1);   color: var(--red); }
+    .ic-g { background: rgba(0,168,107,.1);  color: var(--green); }
+    .hl-title { font-size: .9rem; font-weight: 700; color: var(--black); display: block; }
+    .hl-sub   { font-size: .78rem; color: var(--gray); }
+
+    /* ── Experience ──────────────────────────────────────── */
+    #experience { background: var(--white); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: .5rem; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue), var(--green), transparent);
+    }
+    .t-item { position: relative; padding-bottom: 3rem; }
+    .t-item:last-child { padding-bottom: 0; }
+    .t-dot {
+      position: absolute; left: -2.5rem; top: .3rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--blue); border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .t-dot.g { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+    .t-dot.r { background: var(--red);   box-shadow: 0 0 0 2px var(--red); }
+    .t-date {
+      font-family: var(--mono); font-size: .72rem; font-weight: 600;
+      color: var(--blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: .3rem;
+    }
+    .t-date.g { color: var(--green); }
+    .t-date.r { color: var(--red); }
+    .t-role  { font-size: 1.15rem; font-weight: 800; color: var(--black); margin-bottom: .2rem; }
+    .t-co    { font-size: .9rem; font-weight: 600; color: var(--blue); margin-bottom: .75rem; }
+    .t-desc  { font-size: .9rem; color: #555; line-height: 1.8; }
+    .t-tags  { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
+    .tag {
+      font-family: var(--mono); font-size: .72rem; font-weight: 600;
+      padding: .25rem .7rem; border-radius: 3px;
+    }
+    .tag-b { background: rgba(0,71,255,.08);  color: var(--blue); }
+    .tag-g { background: rgba(0,168,107,.08); color: var(--green); }
+    .tag-r { background: rgba(232,0,26,.08);  color: var(--red); }
+    .tag-k { background: rgba(0,0,0,.05);     color: #555; }
+
+    /* ── Education ───────────────────────────────────────── */
+    #education { background: var(--off-white); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(295px,1fr)); gap: 1.25rem; }
+    .edu-card {
+      background: white; border: 1px solid var(--gray-lt); border-radius: 12px;
+      padding: 1.625rem; position: relative; overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .edu-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-3px); }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .edu-msc::before   { background: linear-gradient(90deg, var(--blue), var(--blue-lt)); }
+    .edu-bsc::before   { background: linear-gradient(90deg, var(--green), var(--green-lt)); }
+    .edu-hs::before    { background: linear-gradient(90deg, #999, #ccc); }
+
+    .edu-type {
+      font-family: var(--mono); font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: .45rem;
+    }
+    .edu-msc .edu-type { color: var(--blue); }
+    .edu-bsc .edu-type { color: var(--green); }
+    .edu-hs  .edu-type { color: #999; }
+    .edu-school { font-size: 1.05rem; font-weight: 700; color: var(--black); margin-bottom: .2rem; }
+    .edu-major  { font-size: .85rem; color: #555; margin-bottom: .875rem; }
+    .edu-period { font-family: var(--mono); font-size: .75rem; color: var(--gray); }
+
+    /* ── Certifications ──────────────────────────────────── */
+    #certifications { background: var(--white); }
+    .cert-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .cert-group-title {
+      font-family: var(--mono); font-size: .7rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .cert-group-title.b { color: var(--blue); }
+    .cert-group-title.g { color: var(--green); }
+    .cert-list { display: flex; flex-direction: column; gap: .6rem; list-style: none; }
+    .cert-item {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .88rem; color: #444; padding: .7rem 1rem;
+      background: var(--off-white); border-radius: 8px;
+      border-left: 3px solid transparent;
+      transition: border-color .2s, background .2s;
+    }
+    .cert-item:hover { background: #eef3ff; border-left-color: var(--blue); }
+    .cert-item.intl { border-left-color: var(--blue); background: rgba(0,71,255,.04); }
+    .cert-item i { width: 18px; text-align: center; flex-shrink: 0; }
+    .cert-item.intl i { color: var(--blue); }
+    .cert-item:not(.intl) i { color: var(--green); }
+    .cert-name { font-weight: 600; color: var(--black); }
+    .cert-full { font-size: .78rem; color: var(--gray); }
+
+    /* ── Awards ──────────────────────────────────────────── */
+    #awards { background: var(--off-white); }
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.25rem; }
+    .award-card {
+      background: white; border: 1px solid var(--gray-lt); border-radius: 12px;
+      padding: 1.375rem; display: flex; align-items: flex-start; gap: 1rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .award-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.07); }
+    .award-icon {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .aw-gold   { background: rgba(255,193,7,.15);  color: #c8960e; }
+    .aw-silver { background: rgba(108,117,125,.15); color: #6c757d; }
+    .aw-blue   { background: rgba(0,71,255,.1);    color: var(--blue); }
+    .aw-green  { background: rgba(0,168,107,.1);   color: var(--green); }
+    .aw-red    { background: rgba(232,0,26,.1);    color: var(--red); }
+    .award-name { font-size: .95rem; font-weight: 700; color: var(--black); margin-bottom: .2rem; }
+    .award-date { font-family: var(--mono); font-size: .72rem; color: var(--gray); }
+
+    /* ── Skills ──────────────────────────────────────────── */
+    #skills { background: var(--black); }
+    #skills .sec-label { color: var(--green); }
+    #skills .sec-title { color: var(--white); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.25rem; }
+    .sk-box {
+      background: var(--dark); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px; padding: 1.625rem; transition: border-color .2s;
+    }
+    .sk-box:hover { border-color: rgba(255,255,255,.14); }
+    .sk-head {
+      font-family: var(--mono); font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      display: flex; align-items: center; gap: .5rem; margin-bottom: 1.1rem;
+    }
+    .sk-head.b { color: var(--blue-lt); }
+    .sk-head.r { color: var(--red-lt); }
+    .sk-head.g { color: var(--green-lt); }
+    .sk-head.w { color: rgba(255,255,255,.5); }
+    .sk-chips  { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .chip {
+      font-family: var(--mono); font-size: .72rem; font-weight: 600;
+      padding: .3rem .8rem; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.03);
+      transition: background .2s, color .2s;
+    }
+    .chip:hover { background: rgba(255,255,255,.08); color: var(--white); }
+    .chip.b { border-color: rgba(0,71,255,.3);  background: rgba(0,71,255,.1);  color: var(--blue-lt); }
+    .chip.g { border-color: rgba(0,168,107,.3); background: rgba(0,168,107,.1); color: var(--green-lt); }
+    .chip.r { border-color: rgba(232,0,26,.3);  background: rgba(232,0,26,.1);  color: var(--red-lt); }
+
+    /* ── Personality ─────────────────────────────────────── */
+    #personality { background: var(--white); }
+    .bosi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .bosi-card {
+      border: 1px solid var(--gray-lt); border-radius: 12px;
+      padding: 1.625rem; position: relative; overflow: hidden;
+    }
+    .bosi-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+    }
+    .bosi-label {
+      font-family: var(--mono); font-size: .68rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: .45rem;
+    }
+    .bosi-type  { font-size: 1.05rem; font-weight: 800; color: var(--black); margin-bottom: .625rem; }
+    .bosi-desc  { font-size: .875rem; color: #555; line-height: 1.75; }
+    .bosi-score {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--mono); font-size: .72rem; font-weight: 600;
+      background: rgba(0,71,255,.08); color: var(--blue);
+      padding: .2rem .65rem; border-radius: 3px; margin-bottom: .75rem;
+    }
+    .bosi-bar {
+      height: 4px; background: var(--gray-lt); border-radius: 2px; margin-bottom: .5rem;
+    }
+    .bosi-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.4);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-name {
+      font-size: 1.5rem; font-weight: 900; color: var(--white);
+      letter-spacing: -1px; margin-bottom: .5rem;
+    }
+    .footer-name em { color: var(--blue-lt); font-style: normal; }
+    .footer-sub { font-size: .82rem; margin-bottom: 1.5rem; }
+    .footer-line { font-family: var(--mono); font-size: .7rem; margin-top: 1.5rem; }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { display: flex; justify-content: center; order: -1; margin-bottom: 1rem; }
+      .hero-photo { width: 180px; height: 220px; }
+      .about-grid   { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cert-cols    { grid-template-columns: 1fr; }
+      .bosi-grid    { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .section { padding: 4rem 1.25rem; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .hero-stats { gap: 1.75rem; }
+      .hero-photo { width: 150px; height: 185px; }
+      .stat-n { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav>
+    <a class="nav-logo" href="#hero">Gijin <em>Kim</em></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#personality">Profile</a></li>
+    </ul>
+    <div class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about"          onclick="closeMenu()">About</a>
+    <a href="#experience"     onclick="closeMenu()">Experience</a>
+    <a href="#education"      onclick="closeMenu()">Education</a>
+    <a href="#certifications" onclick="closeMenu()">Certifications</a>
+    <a href="#awards"         onclick="closeMenu()">Awards</a>
+    <a href="#skills"         onclick="closeMenu()">Skills</a>
+    <a href="#personality"    onclick="closeMenu()">Personality Profile</a>
+  </div>
+
+  <!-- ── Hero ────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">Hyosung TNS &nbsp;·&nbsp; 25 Years</div>
+        <h1 class="hero-h1">
+          Gijin <span class="c-blue">Kim</span><br>
+          <span style="font-size:clamp(1.4rem,3.5vw,2.5rem); color:rgba(255,255,255,.55); font-weight:400; letter-spacing:-.5px;">
+            Senior SW Engineer &amp; Technical Strategist
+          </span>
+        </h1>
+        <p class="hero-sub">
+          25+ years building ATM/Fintech software at Hyosung TNS — from embedded C on CD machines
+          to AI-powered retail kiosks and robot cafes. Two master's degrees, 13 professional certifications,
+          and a record of turning complex technical challenges into shipped products.
+        </p>
+        <blockquote class="hero-quote">
+          "The way to overcome obstacles?&nbsp; Selection and Focus.<br>
+          Pick the biggest problem. Concentrate on it. The answer will appear."
+        </blockquote>
+        <div class="hero-pills">
+          <span class="pill p-blue">ATM / Fintech</span>
+          <span class="pill p-blue">Embedded Systems</span>
+          <span class="pill p-green">AI Engineering · M.S.</span>
+          <span class="pill p-green">Information Security · M.S.</span>
+          <span class="pill p-red">PMP · CISA · CCNA</span>
+          <span class="pill p-gray">POS · SCO · KIOSK</span>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-n">25<em>+</em></div>
+            <div class="stat-l">Years of Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">13<em></em></div>
+            <div class="stat-l">Certifications</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">8<em></em></div>
+            <div class="stat-l">Awards &amp; Honors</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">2<em></em></div>
+            <div class="stat-l">Master's Degrees</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img
+          class="hero-photo"
+          src="ref-my-profile/회사화보/202311130_여권사진.jpg"
+          alt="Gijin Kim — profile photo"
+        >
+        <div class="hero-photo-badge">Hyosung TNS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ────────────────────────────────────────────── -->
+  <section id="about" class="section">
+    <div class="container">
+      <p class="sec-label fi">About Me</p>
+      <h2 class="sec-title fi">Engineer. <span class="a-blue">Leader.</span> <span class="a-green">Builder.</span></h2>
+      <div class="about-grid">
+        <div class="about-text fi">
+          <p>
+            I joined Hyosung TNS in 2001 and have spent over two decades engineering
+            financial automation software — starting with CD/ATM firmware and growing into
+            full-stack solution development and technical strategy.
+          </p>
+          <p>
+            Along the way I pursued parallel graduate studies, earning a master's in
+            <strong>Information Security</strong> (KNOU, 2018) and a second master's in
+            <strong>AI Engineering</strong> (Kookmin University, 2021), driven by a
+            genuine belief that the best engineers keep learning.
+          </p>
+          <p>
+            In 2006 I was featured on the cover of Hyosung's company magazine after I
+            independently designed a <strong>Power Controller</strong> that slashed ATM
+            fault-dispatch calls by <strong>85%</strong> — a textbook example of
+            identifying the root cause, selecting the critical fix, and executing it fully.
+            That philosophy still guides my work today.
+          </p>
+          <p>
+            Currently I bridge engineering and business as part of the
+            <strong>Technical Sales Support Team</strong>, building ATM SW licence
+            management systems, conducting technology training for the sales force, and
+            analysing SW RFPs to shape competitive proposals.
+          </p>
+        </div>
+        <div class="hl-list fi">
+          <div class="hl-card">
+            <div class="hl-icon ic-b"><i class="fa-solid fa-microchip"></i></div>
+            <div>
+              <span class="hl-title">ATM &amp; Fintech Systems</span>
+              <span class="hl-sub">12 yrs CD/ATM dev &amp; ops · ATM management solutions</span>
+            </div>
+          </div>
+          <div class="hl-card">
+            <div class="hl-icon ic-g"><i class="fa-solid fa-robot"></i></div>
+            <div>
+              <span class="hl-title">Modern Retail Tech</span>
+              <span class="hl-sub">POS / SCO · AI refrigerator · Robot café · Olive Young SCO</span>
+            </div>
+          </div>
+          <div class="hl-card">
+            <div class="hl-icon ic-r"><i class="fa-solid fa-brain"></i></div>
+            <div>
+              <span class="hl-title">AI &amp; Generative Tools</span>
+              <span class="hl-sub">Claude · ChatGPT · Gemini — docs, analysis, code</span>
+            </div>
+          </div>
+          <div class="hl-card">
+            <div class="hl-icon ic-b"><i class="fa-solid fa-chart-gantt"></i></div>
+            <div>
+              <span class="hl-title">Project Management</span>
+              <span class="hl-sub">PMP certified · Technical RFP analysis · Sales enablement</span>
+            </div>
+          </div>
+          <div class="hl-card">
+            <div class="hl-icon ic-g"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <span class="hl-title">Security &amp; Audit</span>
+              <span class="hl-sub">CISA certified · M.S. Information Security</span>
+            </div>
+          </div>
+          <div class="hl-card">
+            <div class="hl-icon ic-r"><i class="fa-solid fa-person-running"></i></div>
+            <div>
+              <span class="hl-title">High Drive &amp; Initiative</span>
+              <span class="hl-sub">Cover story: Hyosung Magazine 2006 · Change Leader award</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ───────────────────────────────────────── -->
+  <section id="experience" class="section">
+    <div class="container">
+      <p class="sec-label fi">Career History</p>
+      <h2 class="sec-title fi">25 Years at <span class="a-blue">Hyosung TNS</span></h2>
+      <div class="timeline">
+
+        <div class="t-item fi">
+          <div class="t-dot g"></div>
+          <div class="t-date g">2025 – 2026 · Current</div>
+          <div class="t-role">Technical Sales Support Engineer</div>
+          <div class="t-co">기술영업지원팀 · Hyosung TNS</div>
+          <p class="t-desc">
+            Built an ATM SW licence management system to track and govern software licensing across the
+            product portfolio. Delivers technical education sessions to the sales organisation, translating
+            engineering capabilities into competitive advantage. Analyses SW RFPs and crafts technical
+            response strategies for key bids.
+          </p>
+          <div class="t-tags">
+            <span class="tag tag-g">SW License Mgmt</span>
+            <span class="tag tag-b">RFP Analysis</span>
+            <span class="tag tag-b">Technical Training</span>
+            <span class="tag tag-k">Sales Enablement</span>
+          </div>
+        </div>
+
+        <div class="t-item fi">
+          <div class="t-dot r"></div>
+          <div class="t-date r">2022 – 2024</div>
+          <div class="t-role">Solution Development Engineer</div>
+          <div class="t-co">솔루션개발팀 · Hyosung TNS</div>
+          <p class="t-desc">
+            Led development and operations of next-generation retail automation: POS/SCO terminals,
+            AI-powered smart refrigerators, robot café systems, and the Olive Young self-checkout (SCO)
+            solution — bringing intelligent, connected retail experiences to market.
+          </p>
+          <div class="t-tags">
+            <span class="tag tag-r">POS / SCO</span>
+            <span class="tag tag-r">AI Refrigerator</span>
+            <span class="tag tag-r">Robot Café</span>
+            <span class="tag tag-b">Olive Young SCO</span>
+            <span class="tag tag-k">C / C++</span>
+            <span class="tag tag-k">Java</span>
+          </div>
+        </div>
+
+        <div class="t-item fi">
+          <div class="t-dot"></div>
+          <div class="t-date">2013 – 2021</div>
+          <div class="t-role">Senior Domestic SW Engineer</div>
+          <div class="t-co">국내SW팀 · Hyosung TNS</div>
+          <p class="t-desc">
+            Core developer for the domestic software portfolio: CD/ATM firmware, an ATM
+            remote-management solution, Shinsegae retail cash-counting/exchange/teller machines,
+            and KIOSK platforms. Served as architect and tech lead across multiple simultaneous products.
+          </p>
+          <div class="t-tags">
+            <span class="tag tag-b">CD / ATM SW</span>
+            <span class="tag tag-b">ATM Mgmt Solution</span>
+            <span class="tag tag-k">Cash Recycler</span>
+            <span class="tag tag-k">KIOSK</span>
+            <span class="tag tag-g">C / C++</span>
+            <span class="tag tag-g">Java</span>
+            <span class="tag tag-g">SQL</span>
+          </div>
+        </div>
+
+        <div class="t-item fi">
+          <div class="t-dot"></div>
+          <div class="t-date">2001 – 2012</div>
+          <div class="t-role">CD/ATM Development &amp; Operations Engineer</div>
+          <div class="t-co">자동기서비스사업팀 · Hyosung TNS</div>
+          <p class="t-desc">
+            Joined Hyosung as a new-business engineer on the CD Service Business Team. Developed and
+            maintained CD/ATM software from the ground up. Independently designed a <strong>Power
+            Controller</strong> that reduced fault-dispatch calls by 85%, was selected
+            as <em>Change Leader</em> (2005), and was featured on the company magazine cover (Feb 2006)
+            for this achievement.
+          </p>
+          <div class="t-tags">
+            <span class="tag tag-b">CD / ATM Firmware</span>
+            <span class="tag tag-b">Power Controller</span>
+            <span class="tag tag-k">C / C++</span>
+            <span class="tag tag-k">Windows / Linux</span>
+            <span class="tag tag-g">−85% Fault Dispatches</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Education ────────────────────────────────────────── -->
+  <section id="education" class="section">
+    <div class="container">
+      <p class="sec-label fi">Academic Background</p>
+      <h2 class="sec-title fi">Two Master's. <span class="a-green">Lifelong Learner.</span></h2>
+      <div class="edu-grid">
+
+        <div class="edu-card edu-msc fi">
+          <div class="edu-type">Master of Science</div>
+          <div class="edu-school">Kookmin University</div>
+          <div class="edu-major">AI Engineering</div>
+          <div class="edu-period">2019 – 2021</div>
+        </div>
+
+        <div class="edu-card edu-msc fi">
+          <div class="edu-type">Master of Science</div>
+          <div class="edu-school">Korea National Open University</div>
+          <div class="edu-major">Information Security</div>
+          <div class="edu-period">2016 – 2018</div>
+        </div>
+
+        <div class="edu-card edu-bsc fi">
+          <div class="edu-type">Bachelor of Science</div>
+          <div class="edu-school">Korea National Open University</div>
+          <div class="edu-major">Computer Science</div>
+          <div class="edu-period">2005 – 2007</div>
+        </div>
+
+        <div class="edu-card edu-bsc fi">
+          <div class="edu-type">Bachelor of Engineering</div>
+          <div class="edu-school">Chonnam National University</div>
+          <div class="edu-major">Agricultural Civil Engineering</div>
+          <div class="edu-period">1993 – 2001</div>
+        </div>
+
+        <div class="edu-card edu-hs fi">
+          <div class="edu-type">High School</div>
+          <div class="edu-school">Hwasun Technical High School</div>
+          <div class="edu-major">Technical / Vocational</div>
+          <div class="edu-period">1989 – 1992</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Certifications ───────────────────────────────────── -->
+  <section id="certifications" class="section">
+    <div class="container">
+      <p class="sec-label fi">Professional Credentials</p>
+      <h2 class="sec-title fi">13 Certifications — <span class="a-red">4 International</span></h2>
+      <div class="cert-cols">
+
+        <div class="fi">
+          <div class="cert-group-title b"><i class="fa-solid fa-globe" style="margin-right:.4rem"></i>International</div>
+          <ul class="cert-list">
+            <li class="cert-item intl">
+              <i class="fa-solid fa-award"></i>
+              <div><div class="cert-name">PMP</div><div class="cert-full">Project Management Professional</div></div>
+            </li>
+            <li class="cert-item intl">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div><div class="cert-name">CISA</div><div class="cert-full">Certified Information Systems Auditor</div></div>
+            </li>
+            <li class="cert-item intl">
+              <i class="fa-brands fa-java"></i>
+              <div><div class="cert-name">SCJP</div><div class="cert-full">Sun Certified Java Programmer</div></div>
+            </li>
+            <li class="cert-item intl">
+              <i class="fa-solid fa-network-wired"></i>
+              <div><div class="cert-name">CCNA</div><div class="cert-full">Cisco Certified Network Associate</div></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fi">
+          <div class="cert-group-title g"><i class="fa-solid fa-certificate" style="margin-right:.4rem"></i>National (Korea)</div>
+          <ul class="cert-list">
+            <li class="cert-item">
+              <i class="fa-solid fa-computer"></i>
+              <div><div class="cert-name">PC Maintenance Level 1</div><div class="cert-full">PC정비사 1급</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-house-signal"></i>
+              <div><div class="cert-name">Intelligent Home Manager</div><div class="cert-full">지능형홈관리사</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-chart-bar"></i>
+              <div><div class="cert-name">ASDP</div><div class="cert-full">Data Analysis Semi-Professional · 데이터분석준전문가</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-microchip"></i>
+              <div><div class="cert-name">Embedded Engineer</div><div class="cert-full">임베디드기사</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-file-code"></i>
+              <div><div class="cert-name">Information Processing Engineer</div><div class="cert-full">정보처리기사</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-file-code"></i>
+              <div><div class="cert-name">Information Processing Industrial Eng.</div><div class="cert-full">정보처리산업기사</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-hard-hat"></i>
+              <div><div class="cert-name">Civil Engineering</div><div class="cert-full">토목기사</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-shield"></i>
+              <div><div class="cert-name">Security Officer</div><div class="cert-full">경비사</div></div>
+            </li>
+            <li class="cert-item">
+              <i class="fa-solid fa-car"></i>
+              <div><div class="cert-name">Driver's Licence — Level 1</div><div class="cert-full">자동차운전면허 1종</div></div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Awards ───────────────────────────────────────────── -->
+  <section id="awards" class="section">
+    <div class="container">
+      <p class="sec-label fi">Recognition</p>
+      <h2 class="sec-title fi">8 Awards Over <span class="a-blue">20 Years</span></h2>
+      <div class="awards-grid">
+
+        <div class="award-card fi">
+          <div class="award-icon aw-gold"><i class="fa-solid fa-star"></i></div>
+          <div>
+            <div class="award-name">Special Award</div>
+            <div class="award-date">May 2023</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check"></i></div>
+          <div>
+            <div class="award-name">20-Year Long Service Award</div>
+            <div class="award-date">May 2021</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-green"><i class="fa-solid fa-trophy"></i></div>
+          <div>
+            <div class="award-name">Employee of the Month</div>
+            <div class="award-date" style="font-size:.75rem; color:var(--gray)">Hyosung TNS · Sep 2016</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check"></i></div>
+          <div>
+            <div class="award-name">10-Year Long Service Award</div>
+            <div class="award-date">May 2011</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb"></i></div>
+          <div>
+            <div class="award-name">Outstanding Invention — Bronze</div>
+            <div class="award-date">Dec 2009</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb"></i></div>
+          <div>
+            <div class="award-name">Outstanding Invention — Silver</div>
+            <div class="award-date">Dec 2006</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-red"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <div class="award-name">Change Leader Award</div>
+            <div class="award-date">Dec 2005</div>
+          </div>
+        </div>
+
+        <div class="award-card fi">
+          <div class="award-icon aw-green"><i class="fa-solid fa-medal"></i></div>
+          <div>
+            <div class="award-name">Company Motto Award</div>
+            <div class="award-date">Jul 2003</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ───────────────────────────────────────────── -->
+  <section id="skills" class="section">
+    <div class="container">
+      <p class="sec-label fi">Technical Skills</p>
+      <h2 class="sec-title fi">Languages, <span class="a-blue">Platforms</span> &amp; <span class="a-green">Tools</span></h2>
+      <div class="skills-grid">
+
+        <div class="sk-box fi">
+          <div class="sk-head b"><i class="fa-solid fa-code"></i> Languages</div>
+          <div class="sk-chips">
+            <span class="chip b">C</span>
+            <span class="chip b">C++</span>
+            <span class="chip b">Java</span>
+            <span class="chip b">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="sk-box fi">
+          <div class="sk-head g"><i class="fa-solid fa-layer-group"></i> Web &amp; Frontend</div>
+          <div class="sk-chips">
+            <span class="chip g">HTML5</span>
+            <span class="chip g">React</span>
+            <span class="chip g">Vue.js</span>
+          </div>
+        </div>
+
+        <div class="sk-box fi">
+          <div class="sk-head w"><i class="fa-solid fa-server"></i> Platforms</div>
+          <div class="sk-chips">
+            <span class="chip">Windows Framework Dev</span>
+            <span class="chip">Linux / Unix (C)</span>
+            <span class="chip">Embedded Systems</span>
+          </div>
+        </div>
+
+        <div class="sk-box fi">
+          <div class="sk-head b"><i class="fa-solid fa-database"></i> Database</div>
+          <div class="sk-chips">
+            <span class="chip b">SQL</span>
+            <span class="chip b">Relational DB</span>
+          </div>
+        </div>
+
+        <div class="sk-box fi">
+          <div class="sk-head r"><i class="fa-solid fa-wand-magic-sparkles"></i> AI &amp; Generative Tools</div>
+          <div class="sk-chips">
+            <span class="chip r">Claude</span>
+            <span class="chip r">ChatGPT</span>
+            <span class="chip r">Gemini</span>
+            <span class="chip">Docs &amp; Analysis</span>
+            <span class="chip">Code Assistance</span>
+          </div>
+        </div>
+
+        <div class="sk-box fi">
+          <div class="sk-head g"><i class="fa-solid fa-briefcase"></i> Domain Expertise</div>
+          <div class="sk-chips">
+            <span class="chip g">ATM / CD Systems</span>
+            <span class="chip g">POS / SCO</span>
+            <span class="chip g">KIOSK</span>
+            <span class="chip">Cash Recyclers</span>
+            <span class="chip">Robot Café</span>
+            <span class="chip">AI Appliances</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Personality Profile ───────────────────────────────── -->
+  <section id="personality" class="section">
+    <div class="container">
+      <p class="sec-label fi">Personality Profile</p>
+      <h2 class="sec-title fi">Brain Orientation <span class="a-blue">Suitability Inventory</span></h2>
+      <p style="font-size:.9rem; color:#666; margin-bottom:2.5rem; max-width:680px;" class="fi">
+        Results from the BOSI (Brain Orientation Suitability Inventory) assessment —
+        a neuroscience-based aptitude framework by Brain OS Institute.
+      </p>
+      <div class="bosi-grid">
+
+        <div class="bosi-card fi">
+          <div class="bosi-label">Brain Type</div>
+          <div class="bosi-type">Left-brain Conceptual Thinker (Type 7)</div>
+          <p class="bosi-desc">
+            Sits at the left-right brain boundary — combines a humanistic mindset with
+            scientific thinking. Visualises solutions as mental blueprints before acting
+            (concept-designer tendency). Builds personal logical frameworks to understand
+            and interpret the world. Drawn equally to technology and ideas.
+          </p>
+        </div>
+
+        <div class="bosi-card fi">
+          <div class="bosi-label">Brain / Environment Adaptation</div>
+          <div class="bosi-type">Emotionally Self-Restrained — Practical Creative</div>
+          <p class="bosi-desc">
+            A wise pragmatist who balances ideals with reality. Knows what to pursue and
+            what to set aside. Excels at taking others' concepts and turning them into
+            real, working solutions. Neither lost in dreams nor trapped in routine.
+          </p>
+        </div>
+
+        <div class="bosi-card fi">
+          <div class="bosi-label">Initiative Index <span class="bosi-score">7 / 10</span></div>
+          <div class="bosi-bar"><div class="bosi-fill" style="width:70%"></div></div>
+          <div class="bosi-type">Goal-Oriented Leader</div>
+          <p class="bosi-desc">
+            Steps forward without resistance or ego. Intuitively aligns personal success
+            with organisational success — a win-win orientation. Recognised as a leader
+            by peers without needing to dominate.
+          </p>
+        </div>
+
+        <div class="bosi-card fi">
+          <div class="bosi-label">Sociality Index <span class="bosi-score">7 / 10</span></div>
+          <div class="bosi-bar"><div class="bosi-fill" style="width:70%"></div></div>
+          <div class="bosi-type">Relationship-Centred</div>
+          <p class="bosi-desc">
+            Energised by people. Strong empathy and genuine care for others' perspectives.
+            Naturally earns "good person" feedback everywhere. Puts others' viewpoints
+            before his own — a natural foundation for respected leadership.
+          </p>
+        </div>
+
+        <div class="bosi-card fi">
+          <div class="bosi-label">Execution Index <span class="bosi-score">6 / 10</span></div>
+          <div class="bosi-bar"><div class="bosi-fill" style="width:60%; background: linear-gradient(90deg, var(--green), var(--green-lt));"></div></div>
+          <div class="bosi-type">Efficient Practitioner</div>
+          <p class="bosi-desc">
+            Outstanding ability to distinguish what matters from what doesn't, then pour
+            full focus into the critical path. Self-directed — acts without being told
+            on things that count. Sets direction precisely, then executes at full speed.
+          </p>
+        </div>
+
+        <div class="bosi-card fi">
+          <div class="bosi-label">Physical Activity Index <span class="bosi-score">9 / 10</span></div>
+          <div class="bosi-bar"><div class="bosi-fill" style="width:90%; background: linear-gradient(90deg, var(--red), var(--red-lt));"></div></div>
+          <div class="bosi-type">Sports Type — High Drive</div>
+          <p class="bosi-desc">
+            Exceptionally high physical energy that supports both deep analytical work
+            and creative, intuitive tasks simultaneously. Hurdling was literally on a
+            company magazine cover — selection and focus in physical form.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ───────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-name">Gijin <em>Kim</em></div>
+    <div class="footer-sub">Senior Software Engineer &amp; Technical Strategist · Hyosung TNS</div>
+    <div class="footer-sub" style="font-size:.78rem; opacity:.6;">
+      AI Engineering M.S. · Information Security M.S. · PMP · CISA · CCNA · SCJP
+    </div>
+    <div class="footer-line">
+      © 2025 Gijin Kim · Built with semantic HTML5 · All CDN dependencies · Mobile-first responsive
+    </div>
+  </footer>
+
+  <!-- ── Scripts ───────────────────────────────────────────── -->
+  <script>
+    // Burger menu
+    const burger = document.getElementById('burger');
+    const navMobile = document.getElementById('navMobile');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+    });
+    function closeMenu() {
+      burger.classList.remove('open');
+      navMobile.classList.remove('open');
+    }
+
+    // Scroll fade-in
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const links    = document.querySelectorAll('.nav-links a');
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => navObs.observe(s));
+  </script>
+
+</body>
+</html>

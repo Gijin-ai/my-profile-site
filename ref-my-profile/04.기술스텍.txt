@@ -1,0 +1,6 @@
+기술 스택
+- 언어: C, C++, Java, JavaScript
+- 웹/프론트엔드: HTML5, React, Vue.js
+- 플랫폼: Windows 기반 프레임워크 개발, Linux/Unix 환경 C 개발
+- 데이터베이스: SQL 및 관계형 데이터베이스 활용
+- AI 활용: Claude, ChatGPT, Gemini 등 생성형 AI 도구를 활용한 문서작성, 자료분석, 코드보조, 보고서 작성
