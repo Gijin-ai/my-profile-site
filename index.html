@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eqjn08KoiCLZQAJe3skrwpfhvQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     /* ── Variables ───────────────────────────────────────── */
     :root {
@@ -475,6 +476,26 @@
     }
     .btn-submit:hover { background: var(--blue-dk); transform: translateY(-1px); }
     .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .form-status {
+      display: none;
+      padding: .875rem 1.25rem;
+      border-radius: 6px;
+      font-size: .88rem; font-weight: 600;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(0,168,107,.15);
+      border: 1px solid rgba(0,168,107,.4);
+      color: var(--green-lt);
+    }
+    .form-status.error {
+      display: block;
+      background: rgba(232,0,26,.12);
+      border: 1px solid rgba(232,0,26,.35);
+      color: var(--red-lt);
+    }
 
     /* ── Footer ──────────────────────────────────────────── */
     footer {
@@ -1119,18 +1140,7 @@
       <p class="sec-label fi"><i class="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp;Contact</p>
       <h2 class="sec-title fi">Get in <span class="a-blue">Touch</span></h2>
       <div class="contact-wrap fi">
-        <!--
-          ▶ Formspree 설정 방법:
-          1. https://formspree.io 에서 무료 계정 생성
-          2. New Form 생성 후 수신 이메일을 Gijin.kim@hyosung.com 으로 설정
-          3. 발급된 Form ID로 아래 action URL의 YOUR_FORM_ID 를 교체
-             예) action="https://formspree.io/f/xpwzabcd"
-        -->
-        <form
-          class="contact-form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
-          method="POST"
-        >
+        <form class="contact-form" id="contactForm" novalidate>
           <div class="form-group">
             <label for="subject">제목 (Subject)</label>
             <input
@@ -1142,11 +1152,11 @@
             >
           </div>
           <div class="form-group">
-            <label for="email">이메일 (Email)</label>
+            <label for="from_email">이메일 (Email)</label>
             <input
               type="email"
-              id="email"
-              name="email"
+              id="from_email"
+              name="from_email"
               placeholder="your@email.com"
               required
             >
@@ -1169,7 +1179,8 @@
               required
             ></textarea>
           </div>
-          <button type="submit" class="btn-submit">
+          <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
+          <button type="submit" class="btn-submit" id="submitBtn">
             <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
             Send Message
           </button>
@@ -1192,6 +1203,51 @@
 
   <!-- ── Scripts ───────────────────────────────────────────── -->
   <script>
+    // ── EmailJS 설정 ────────────────────────────────────────
+    // ▶ 설정 방법:
+    //   1. https://www.emailjs.com 무료 계정 생성
+    //   2. Email Services 메뉴에서 Gmail 또는 Naver(SMTP) 연결
+    //      - Gmail: "Add New Service" → Gmail 선택 → Google 계정 인증
+    //      - Naver: "Add New Service" → SMTP 선택
+    //              Host: smtp.naver.com, Port: 587, 아이디/비밀번호 입력
+    //   3. Email Templates 메뉴에서 새 템플릿 생성, 아래 변수 사용:
+    //      제목: {{subject}}
+    //      본문: 보낸 사람: {{from_email}} / 연락처: {{phone}} / {{message}}
+    //      수신: Gijin.kim@hyosung.com (To Email 고정)
+    //   4. Account 메뉴에서 Public Key 확인
+    //   5. 아래 세 값을 실제 값으로 교체
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // Account > Public Key
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // Email Services > Service ID
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // Email Templates > Template ID
+
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn    = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Sending…';
+      status.className = 'form-status';
+      status.textContent = '';
+
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+        .then(() => {
+          status.className = 'form-status success';
+          status.textContent = '메시지가 성공적으로 전송되었습니다. 감사합니다!';
+          this.reset();
+        })
+        .catch(() => {
+          status.className = 'form-status error';
+          status.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message';
+        });
+    });
+
     // Burger menu
     const burger = document.getElementById('burger');
     const navMobile = document.getElementById('navMobile');
