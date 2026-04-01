@@ -497,6 +497,42 @@
       color: var(--red-lt);
     }
 
+    .form-success-card {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      border: 1px solid rgba(0,168,107,.3);
+      border-radius: 10px;
+      background: rgba(0,168,107,.07);
+    }
+    .success-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(0,168,107,.2);
+      border: 2px solid var(--green);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: var(--green-lt);
+      margin-bottom: 1.25rem;
+    }
+    .success-title {
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--white); margin-bottom: .75rem;
+    }
+    .success-desc {
+      font-size: .9rem; color: rgba(255,255,255,.6);
+      line-height: 1.7; margin-bottom: 1.75rem;
+    }
+    .success-desc strong { color: var(--green-lt); }
+    .btn-retry {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 6px; color: rgba(255,255,255,.7);
+      padding: .625rem 1.5rem;
+      font-size: .84rem; font-weight: 600;
+      cursor: pointer; transition: border-color .2s, color .2s;
+    }
+    .btn-retry:hover { border-color: var(--blue-lt); color: var(--blue-lt); }
+
     /* ── Footer ──────────────────────────────────────────── */
     footer {
       background: var(--dark); color: rgba(255,255,255,.4);
@@ -1185,6 +1221,22 @@
             Send Message
           </button>
         </form>
+
+        <div class="form-success-card" id="successCard" role="status" aria-live="polite">
+          <div class="success-icon">
+            <i class="fa-solid fa-check" aria-hidden="true"></i>
+          </div>
+          <div class="success-title">전송 완료</div>
+          <p class="success-desc">
+            메시지가 성공적으로 전달되었습니다.<br>
+            <strong>Gijin.kim@hyosung.com</strong> 으로 수신되었으며,<br>
+            빠른 시일 내에 답변 드리겠습니다. 감사합니다.
+          </p>
+          <button class="btn-retry" id="retryBtn">
+            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+            다른 문의하기
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -1216,9 +1268,9 @@
     //      수신: Gijin.kim@hyosung.com (To Email 고정)
     //   4. Account 메뉴에서 Public Key 확인
     //   5. 아래 세 값을 실제 값으로 교체
-    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // Account > Public Key
-    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // Email Services > Service ID
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // Email Templates > Template ID
+    const EMAILJS_PUBLIC_KEY  = 'oTCwSVG-NBiwQu8nU';   // Account > Public Key (oTCwSVG-NBiwQu8nU)
+    const EMAILJS_SERVICE_ID  = 'service_462b5hd';   // Email Services > Service ID (service_462b5hd)
+    const EMAILJS_TEMPLATE_ID = 'template_wpwphaq';  // Email Templates > Template ID (template_wpwphaq
 
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -1232,20 +1284,24 @@
       status.className = 'form-status';
       status.textContent = '';
 
-      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+      const form = this;
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
         .then(() => {
-          status.className = 'form-status success';
-          status.textContent = '메시지가 성공적으로 전송되었습니다. 감사합니다!';
-          this.reset();
+          form.reset();
+          form.style.display = 'none';
+          document.getElementById('successCard').style.display = 'block';
         })
         .catch(() => {
           status.className = 'form-status error';
           status.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
-        })
-        .finally(() => {
           btn.disabled = false;
           btn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message';
         });
+    });
+
+    document.getElementById('retryBtn').addEventListener('click', function() {
+      document.getElementById('successCard').style.display = 'none';
+      document.getElementById('contactForm').style.display = 'flex';
     });
 
     // Burger menu
