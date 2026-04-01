@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eqjn08KoiCLZQAJe3skrwpfhvQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <style>
     /* ── Variables ───────────────────────────────────────── */
     :root {
@@ -18,10 +18,17 @@
       --white:      #ffffff;
       --off-white:  #f5f5f5;
       --gray:       #888888;
+      --gray-mid:   #999999;
+      --gray-md:    #666666;
+      --gray-dk:    #555555;
+      --gray-xdk:   #444444;
       --gray-lt:    #e2e2e2;
+      --gold:       #c8960e;
+      --silver:     #6c757d;
       --blue:       #0047ff;
       --blue-dk:    #0036cc;
       --blue-lt:    #4d87ff;
+      --blue-xlt:   #eef3ff;
       --red:        #e8001a;
       --red-lt:     #ff4d60;
       --green:      #00a86b;
@@ -89,7 +96,7 @@
     }
     .nav-links a:hover, .nav-links a.active { color: var(--blue-lt); }
 
-    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 0; }
     .burger span { display: block; width: 22px; height: 2px; background: white; transition: .3s; }
     .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .burger.open span:nth-child(2) { opacity: 0; }
@@ -217,7 +224,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start;
     }
     .about-text p {
-      font-size: 1rem; color: #444; line-height: 1.85; margin-bottom: 1.2rem;
+      font-size: 1rem; color: var(--gray-xdk); line-height: 1.85; margin-bottom: 1.2rem;
     }
     .hl-list { display: flex; flex-direction: column; gap: .875rem; }
     .hl-card {
@@ -263,7 +270,7 @@
     .t-date.r { color: var(--red); }
     .t-role  { font-size: 1.15rem; font-weight: 800; color: var(--black); margin-bottom: .2rem; }
     .t-co    { font-size: .9rem; font-weight: 600; color: var(--blue); margin-bottom: .75rem; }
-    .t-desc  { font-size: .9rem; color: #555; line-height: 1.8; }
+    .t-desc  { font-size: .9rem; color: var(--gray-dk); line-height: 1.8; }
     .t-tags  { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
     .tag {
       font-family: var(--mono); font-size: .72rem; font-weight: 600;
@@ -272,7 +279,7 @@
     .tag-b { background: rgba(0,71,255,.08);  color: var(--blue); }
     .tag-g { background: rgba(0,168,107,.08); color: var(--green); }
     .tag-r { background: rgba(232,0,26,.08);  color: var(--red); }
-    .tag-k { background: rgba(0,0,0,.05);     color: #555; }
+    .tag-k { background: rgba(0,0,0,.05);     color: var(--gray-dk); }
 
     /* ── Education ───────────────────────────────────────── */
     #education { background: var(--off-white); }
@@ -286,7 +293,7 @@
     .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .edu-msc::before   { background: linear-gradient(90deg, var(--blue), var(--blue-lt)); }
     .edu-bsc::before   { background: linear-gradient(90deg, var(--green), var(--green-lt)); }
-    .edu-hs::before    { background: linear-gradient(90deg, #999, #ccc); }
+    .edu-hs::before    { background: linear-gradient(90deg, var(--gray-mid), var(--gray-lt)); }
 
     .edu-type {
       font-family: var(--mono); font-size: .68rem; font-weight: 700;
@@ -294,9 +301,9 @@
     }
     .edu-msc .edu-type { color: var(--blue); }
     .edu-bsc .edu-type { color: var(--green); }
-    .edu-hs  .edu-type { color: #999; }
+    .edu-hs  .edu-type { color: var(--gray-mid); }
     .edu-school { font-size: 1.05rem; font-weight: 700; color: var(--black); margin-bottom: .2rem; }
-    .edu-major  { font-size: .85rem; color: #555; margin-bottom: .875rem; }
+    .edu-major  { font-size: .85rem; color: var(--gray-dk); margin-bottom: .875rem; }
     .edu-period { font-family: var(--mono); font-size: .75rem; color: var(--gray); }
 
     /* ── Certifications ──────────────────────────────────── */
@@ -305,19 +312,19 @@
     .cert-group-title {
       font-family: var(--mono); font-size: .7rem; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: .4rem;
     }
     .cert-group-title.b { color: var(--blue); }
     .cert-group-title.g { color: var(--green); }
     .cert-list { display: flex; flex-direction: column; gap: .6rem; list-style: none; }
     .cert-item {
       display: flex; align-items: center; gap: .75rem;
-      font-size: .88rem; color: #444; padding: .7rem 1rem;
+      font-size: .88rem; color: var(--gray-xdk); padding: .7rem 1rem;
       background: var(--off-white); border-radius: 8px;
       border-left: 3px solid transparent;
       transition: border-color .2s, background .2s;
     }
-    .cert-item:hover { background: #eef3ff; border-left-color: var(--blue); }
+    .cert-item:hover { background: var(--blue-xlt); border-left-color: var(--blue); }
     .cert-item.intl { border-left-color: var(--blue); background: rgba(0,71,255,.04); }
     .cert-item i { width: 18px; text-align: center; flex-shrink: 0; }
     .cert-item.intl i { color: var(--blue); }
@@ -338,8 +345,8 @@
       width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
     }
-    .aw-gold   { background: rgba(255,193,7,.15);  color: #c8960e; }
-    .aw-silver { background: rgba(108,117,125,.15); color: #6c757d; }
+    .aw-gold   { background: rgba(255,193,7,.15);  color: var(--gold); }
+    .aw-silver { background: rgba(108,117,125,.15); color: var(--silver); }
     .aw-blue   { background: rgba(0,71,255,.1);    color: var(--blue); }
     .aw-green  { background: rgba(0,168,107,.1);   color: var(--green); }
     .aw-red    { background: rgba(232,0,26,.1);    color: var(--red); }
@@ -396,7 +403,7 @@
       color: var(--blue); margin-bottom: .45rem;
     }
     .bosi-type  { font-size: 1.05rem; font-weight: 800; color: var(--black); margin-bottom: .625rem; }
-    .bosi-desc  { font-size: .875rem; color: #555; line-height: 1.75; }
+    .bosi-desc  { font-size: .875rem; color: var(--gray-dk); line-height: 1.75; }
     .bosi-score {
       display: inline-flex; align-items: center; gap: .5rem;
       font-family: var(--mono); font-size: .72rem; font-weight: 600;
@@ -422,6 +429,8 @@
     }
     .footer-name em { color: var(--blue-lt); font-style: normal; }
     .footer-sub { font-size: .82rem; margin-bottom: 1.5rem; }
+    .footer-sub-sm { font-size: .78rem; opacity: .6; margin-bottom: 1.5rem; }
+    .sec-intro { font-size: .9rem; color: var(--gray-md); margin-bottom: 2.5rem; max-width: 680px; }
     .footer-line { font-family: var(--mono); font-size: .7rem; margin-top: 1.5rem; }
 
     /* ── Responsive ──────────────────────────────────────── */
@@ -446,9 +455,9 @@
 <body>
 
   <!-- ── Navigation ──────────────────────────────────────── -->
-  <nav>
+  <nav aria-label="Main navigation">
     <a class="nav-logo" href="#hero">Gijin <em>Kim</em></a>
-    <ul class="nav-links">
+    <ul class="nav-links" role="list">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
@@ -457,11 +466,11 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#personality">Profile</a></li>
     </ul>
-    <div class="burger" id="burger" aria-label="Menu">
+    <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMobile">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </nav>
-  <div class="nav-mobile" id="navMobile">
+  <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation" aria-hidden="true">
     <a href="#about"          onclick="closeMenu()">About</a>
     <a href="#experience"     onclick="closeMenu()">Experience</a>
     <a href="#education"      onclick="closeMenu()">Education</a>
@@ -469,7 +478,7 @@
     <a href="#awards"         onclick="closeMenu()">Awards</a>
     <a href="#skills"         onclick="closeMenu()">Skills</a>
     <a href="#personality"    onclick="closeMenu()">Personality Profile</a>
-  </div>
+  </nav>
 
   <!-- ── Hero ────────────────────────────────────────────── -->
   <section id="hero">
@@ -523,6 +532,7 @@
           class="hero-photo"
           src="ref-my-profile/회사화보/202311130_여권사진.jpg"
           alt="Gijin Kim — profile photo"
+          fetchpriority="high"
         >
         <div class="hero-photo-badge">Hyosung TNS</div>
       </div>
@@ -563,42 +573,42 @@
         </div>
         <div class="hl-list fi">
           <div class="hl-card">
-            <div class="hl-icon ic-b"><i class="fa-solid fa-microchip"></i></div>
+            <div class="hl-icon ic-b"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
             <div>
               <span class="hl-title">ATM &amp; Fintech Systems</span>
               <span class="hl-sub">12 yrs CD/ATM dev &amp; ops · ATM management solutions</span>
             </div>
           </div>
           <div class="hl-card">
-            <div class="hl-icon ic-g"><i class="fa-solid fa-robot"></i></div>
+            <div class="hl-icon ic-g"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
             <div>
               <span class="hl-title">Modern Retail Tech</span>
               <span class="hl-sub">POS / SCO · AI refrigerator · Robot café · Olive Young SCO</span>
             </div>
           </div>
           <div class="hl-card">
-            <div class="hl-icon ic-r"><i class="fa-solid fa-brain"></i></div>
+            <div class="hl-icon ic-r"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
             <div>
               <span class="hl-title">AI &amp; Generative Tools</span>
               <span class="hl-sub">Claude · ChatGPT · Gemini — docs, analysis, code</span>
             </div>
           </div>
           <div class="hl-card">
-            <div class="hl-icon ic-b"><i class="fa-solid fa-chart-gantt"></i></div>
+            <div class="hl-icon ic-b"><i class="fa-solid fa-chart-gantt" aria-hidden="true"></i></div>
             <div>
               <span class="hl-title">Project Management</span>
               <span class="hl-sub">PMP certified · Technical RFP analysis · Sales enablement</span>
             </div>
           </div>
           <div class="hl-card">
-            <div class="hl-icon ic-g"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="hl-icon ic-g"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
             <div>
               <span class="hl-title">Security &amp; Audit</span>
               <span class="hl-sub">CISA certified · M.S. Information Security</span>
             </div>
           </div>
           <div class="hl-card">
-            <div class="hl-icon ic-r"><i class="fa-solid fa-person-running"></i></div>
+            <div class="hl-icon ic-r"><i class="fa-solid fa-person-running" aria-hidden="true"></i></div>
             <div>
               <span class="hl-title">High Drive &amp; Initiative</span>
               <span class="hl-sub">Cover story: Hyosung Magazine 2006 · Change Leader award</span>
@@ -755,60 +765,60 @@
       <div class="cert-cols">
 
         <div class="fi">
-          <div class="cert-group-title b"><i class="fa-solid fa-globe" style="margin-right:.4rem"></i>International</div>
+          <div class="cert-group-title b"><i class="fa-solid fa-globe" aria-hidden="true"></i>International</div>
           <ul class="cert-list">
             <li class="cert-item intl">
-              <i class="fa-solid fa-award"></i>
+              <i class="fa-solid fa-award" aria-hidden="true"></i>
               <div><div class="cert-name">PMP</div><div class="cert-full">Project Management Professional</div></div>
             </li>
             <li class="cert-item intl">
-              <i class="fa-solid fa-shield-halved"></i>
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
               <div><div class="cert-name">CISA</div><div class="cert-full">Certified Information Systems Auditor</div></div>
             </li>
             <li class="cert-item intl">
-              <i class="fa-brands fa-java"></i>
+              <i class="fa-brands fa-java" aria-hidden="true"></i>
               <div><div class="cert-name">SCJP</div><div class="cert-full">Sun Certified Java Programmer</div></div>
             </li>
             <li class="cert-item intl">
-              <i class="fa-solid fa-network-wired"></i>
+              <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
               <div><div class="cert-name">CCNA</div><div class="cert-full">Cisco Certified Network Associate</div></div>
             </li>
           </ul>
         </div>
 
         <div class="fi">
-          <div class="cert-group-title g"><i class="fa-solid fa-certificate" style="margin-right:.4rem"></i>National (Korea)</div>
+          <div class="cert-group-title g"><i class="fa-solid fa-certificate" aria-hidden="true"></i>National (Korea)</div>
           <ul class="cert-list">
             <li class="cert-item">
-              <i class="fa-solid fa-computer"></i>
+              <i class="fa-solid fa-computer" aria-hidden="true"></i>
               <div><div class="cert-name">PC Maintenance Level 1</div><div class="cert-full">PC정비사 1급</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-house-signal"></i>
+              <i class="fa-solid fa-house-signal" aria-hidden="true"></i>
               <div><div class="cert-name">Intelligent Home Manager</div><div class="cert-full">지능형홈관리사</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-chart-bar"></i>
+              <i class="fa-solid fa-chart-bar" aria-hidden="true"></i>
               <div><div class="cert-name">ASDP</div><div class="cert-full">Data Analysis Semi-Professional · 데이터분석준전문가</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-microchip"></i>
+              <i class="fa-solid fa-microchip" aria-hidden="true"></i>
               <div><div class="cert-name">Embedded Engineer</div><div class="cert-full">임베디드기사</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-file-code"></i>
+              <i class="fa-solid fa-file-code" aria-hidden="true"></i>
               <div><div class="cert-name">Information Processing Engineer</div><div class="cert-full">정보처리기사</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-file-code"></i>
+              <i class="fa-solid fa-file-code" aria-hidden="true"></i>
               <div><div class="cert-name">Information Processing Industrial Eng.</div><div class="cert-full">정보처리산업기사</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-hard-hat"></i>
+              <i class="fa-solid fa-hard-hat" aria-hidden="true"></i>
               <div><div class="cert-name">Civil Engineering</div><div class="cert-full">토목기사</div></div>
             </li>
             <li class="cert-item">
-              <i class="fa-solid fa-car"></i>
+              <i class="fa-solid fa-car" aria-hidden="true"></i>
               <div><div class="cert-name">Driver's Licence — Level 1</div><div class="cert-full">자동차운전면허 1종</div></div>
             </li>
           </ul>
@@ -826,7 +836,7 @@
       <div class="awards-grid">
 
         <div class="award-card fi">
-          <div class="award-icon aw-gold"><i class="fa-solid fa-star"></i></div>
+          <div class="award-icon aw-gold"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">Special Award</div>
             <div class="award-date">May 2023</div>
@@ -834,7 +844,7 @@
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">20-Year Long Service Award</div>
             <div class="award-date">May 2021</div>
@@ -842,15 +852,15 @@
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-green"><i class="fa-solid fa-trophy"></i></div>
+          <div class="award-icon aw-green"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">Employee of the Month</div>
-            <div class="award-date" style="font-size:.75rem; color:var(--gray)">Hyosung TNS · Sep 2016</div>
+            <div class="award-date">Hyosung TNS · Sep 2016</div>
           </div>
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">10-Year Long Service Award</div>
             <div class="award-date">May 2011</div>
@@ -858,7 +868,7 @@
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb"></i></div>
+          <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">Outstanding Invention — Bronze</div>
             <div class="award-date">Dec 2009</div>
@@ -866,7 +876,7 @@
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb"></i></div>
+          <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">Outstanding Invention — Silver</div>
             <div class="award-date">Dec 2006</div>
@@ -874,7 +884,7 @@
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-red"><i class="fa-solid fa-bolt"></i></div>
+          <div class="award-icon aw-red"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">Change Leader Award</div>
             <div class="award-date">Dec 2005</div>
@@ -882,7 +892,7 @@
         </div>
 
         <div class="award-card fi">
-          <div class="award-icon aw-green"><i class="fa-solid fa-medal"></i></div>
+          <div class="award-icon aw-green"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
           <div>
             <div class="award-name">Company Motto Award</div>
             <div class="award-date">Jul 2003</div>
@@ -901,7 +911,7 @@
       <div class="skills-grid">
 
         <div class="sk-box fi">
-          <div class="sk-head b"><i class="fa-solid fa-code"></i> Languages</div>
+          <div class="sk-head b"><i class="fa-solid fa-code" aria-hidden="true"></i> Languages</div>
           <div class="sk-chips">
             <span class="chip b">C</span>
             <span class="chip b">C++</span>
@@ -911,7 +921,7 @@
         </div>
 
         <div class="sk-box fi">
-          <div class="sk-head g"><i class="fa-solid fa-layer-group"></i> Web &amp; Frontend</div>
+          <div class="sk-head g"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Web &amp; Frontend</div>
           <div class="sk-chips">
             <span class="chip g">HTML5</span>
             <span class="chip g">React</span>
@@ -920,7 +930,7 @@
         </div>
 
         <div class="sk-box fi">
-          <div class="sk-head w"><i class="fa-solid fa-server"></i> Platforms</div>
+          <div class="sk-head w"><i class="fa-solid fa-server" aria-hidden="true"></i> Platforms</div>
           <div class="sk-chips">
             <span class="chip">Windows Framework Dev</span>
             <span class="chip">Linux / Unix (C)</span>
@@ -929,7 +939,7 @@
         </div>
 
         <div class="sk-box fi">
-          <div class="sk-head b"><i class="fa-solid fa-database"></i> Database</div>
+          <div class="sk-head b"><i class="fa-solid fa-database" aria-hidden="true"></i> Database</div>
           <div class="sk-chips">
             <span class="chip b">SQL</span>
             <span class="chip b">Relational DB</span>
@@ -937,7 +947,7 @@
         </div>
 
         <div class="sk-box fi">
-          <div class="sk-head r"><i class="fa-solid fa-wand-magic-sparkles"></i> AI &amp; Generative Tools</div>
+          <div class="sk-head r"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> AI &amp; Generative Tools</div>
           <div class="sk-chips">
             <span class="chip r">Claude</span>
             <span class="chip r">ChatGPT</span>
@@ -948,7 +958,7 @@
         </div>
 
         <div class="sk-box fi">
-          <div class="sk-head g"><i class="fa-solid fa-briefcase"></i> Domain Expertise</div>
+          <div class="sk-head g"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Domain Expertise</div>
           <div class="sk-chips">
             <span class="chip g">ATM / CD Systems</span>
             <span class="chip g">POS / SCO</span>
@@ -968,7 +978,7 @@
     <div class="container">
       <p class="sec-label fi">Personality Profile</p>
       <h2 class="sec-title fi">Brain Orientation <span class="a-blue">Suitability Inventory</span></h2>
-      <p style="font-size:.9rem; color:#666; margin-bottom:2.5rem; max-width:680px;" class="fi">
+      <p class="sec-intro fi">
         Results from the BOSI (Brain Orientation Suitability Inventory) assessment —
         a neuroscience-based aptitude framework by Brain OS Institute.
       </p>
@@ -1047,7 +1057,7 @@
   <footer>
     <div class="footer-name">Gijin <em>Kim</em></div>
     <div class="footer-sub">Senior Software Engineer &amp; Technical Strategist · Hyosung TNS</div>
-    <div class="footer-sub" style="font-size:.78rem; opacity:.6;">
+    <div class="footer-sub-sm">
       AI Engineering M.S. · Information Security M.S. · PMP · CISA · CCNA · SCJP
     </div>
     <div class="footer-line">
@@ -1061,33 +1071,45 @@
     const burger = document.getElementById('burger');
     const navMobile = document.getElementById('navMobile');
     burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
+      const isOpen = burger.classList.toggle('open');
       navMobile.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      burger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      navMobile.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     });
     function closeMenu() {
       burger.classList.remove('open');
       navMobile.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open navigation menu');
+      navMobile.setAttribute('aria-hidden', 'true');
     }
 
     // Scroll fade-in
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+    } else {
+      document.querySelectorAll('.fi').forEach(el => el.classList.add('vis'));
+    }
 
     // Active nav link
     const sections = document.querySelectorAll('section[id]');
     const links    = document.querySelectorAll('.nav-links a');
-    const navObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => navObs.observe(s));
+    if ('IntersectionObserver' in window) {
+      const navObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      sections.forEach(s => navObs.observe(s));
+    }
   </script>
 
 </body>
