@@ -418,6 +418,64 @@
       background: linear-gradient(90deg, var(--blue), var(--blue-lt));
     }
 
+    /* ── Contact ─────────────────────────────────────────── */
+    #contact { background: var(--black); color: var(--white); }
+    #contact .sec-label { color: var(--blue-lt); }
+    #contact .sec-title { color: var(--white); }
+
+    .contact-wrap {
+      max-width: 640px;
+    }
+    .contact-form {
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .form-group {
+      display: flex; flex-direction: column; gap: .4rem;
+    }
+    .form-group label {
+      font-size: .76rem; font-weight: 700;
+      letter-spacing: .75px; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      font-family: var(--mono);
+    }
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: .92rem;
+      padding: .75rem 1rem;
+      transition: border-color .2s, background .2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,.25);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue-lt);
+      background: rgba(77,135,255,.07);
+    }
+    .form-group textarea {
+      min-height: 140px; resize: vertical;
+    }
+    .btn-submit {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--blue); color: var(--white);
+      border: none; border-radius: 6px;
+      padding: .875rem 2rem;
+      font-size: .9rem; font-weight: 700;
+      letter-spacing: .5px; cursor: pointer;
+      transition: background .2s, transform .15s;
+      align-self: flex-start;
+    }
+    .btn-submit:hover { background: var(--blue-dk); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
     /* ── Footer ──────────────────────────────────────────── */
     footer {
       background: var(--dark); color: rgba(255,255,255,.4);
@@ -465,6 +523,7 @@
       <li><a href="#awards">Awards</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#personality">Profile</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMobile">
       <span></span><span></span><span></span>
@@ -478,6 +537,7 @@
     <a href="#awards"         onclick="closeMenu()">Awards</a>
     <a href="#skills"         onclick="closeMenu()">Skills</a>
     <a href="#personality"    onclick="closeMenu()">Personality Profile</a>
+    <a href="#contact"        onclick="closeMenu()">Contact</a>
   </nav>
 
   <!-- ── Hero ────────────────────────────────────────────── -->
@@ -1049,6 +1109,71 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ──────────────────────────────────────────── -->
+  <section id="contact" class="section">
+    <div class="container">
+      <p class="sec-label fi"><i class="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp;Contact</p>
+      <h2 class="sec-title fi">Get in <span class="a-blue">Touch</span></h2>
+      <div class="contact-wrap fi">
+        <!--
+          ▶ Formspree 설정 방법:
+          1. https://formspree.io 에서 무료 계정 생성
+          2. New Form 생성 후 수신 이메일을 Gijin.kim@hyosung.com 으로 설정
+          3. 발급된 Form ID로 아래 action URL의 YOUR_FORM_ID 를 교체
+             예) action="https://formspree.io/f/xpwzabcd"
+        -->
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="subject">제목 (Subject)</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="문의 제목을 입력해 주세요"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="email">이메일 (Email)</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="phone">연락처 (Phone)</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="010-0000-0000"
+            >
+          </div>
+          <div class="form-group">
+            <label for="message">내용 (Message)</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="문의 내용을 입력해 주세요"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            Send Message
+          </button>
+        </form>
       </div>
     </div>
   </section>
