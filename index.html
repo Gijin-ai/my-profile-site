@@ -631,15 +631,15 @@
             <div class="stat-l">Years of Experience</div>
           </div>
           <div class="stat">
-            <div class="stat-n">13<em></em></div>
+            <div class="stat-n">13</div>
             <div class="stat-l">Certifications</div>
           </div>
           <div class="stat">
-            <div class="stat-n">8<em></em></div>
+            <div class="stat-n">8</div>
             <div class="stat-l">Awards &amp; Honors</div>
           </div>
           <div class="stat">
-            <div class="stat-n">2<em></em></div>
+            <div class="stat-n">2</div>
             <div class="stat-l">Master's Degrees</div>
           </div>
         </div>
@@ -1249,7 +1249,7 @@
       AI Engineering M.S. · Information Security M.S. · PMP · CISA · CCNA · SCJP
     </div>
     <div class="footer-line">
-      © 2025 Gijin Kim · Built with semantic HTML5 · All CDN dependencies · Mobile-first responsive
+      © <span id="footerYear"></span> Gijin Kim · Built with semantic HTML5 · All CDN dependencies · Mobile-first responsive
     </div>
   </footer>
 
@@ -1268,11 +1268,12 @@
     //      수신: Gijin.kim@hyosung.com (To Email 고정)
     //   4. Account 메뉴에서 Public Key 확인
     //   5. 아래 세 값을 실제 값으로 교체
-    const EMAILJS_PUBLIC_KEY  = 'oTCwSVG-NBiwQu8nU';   // Account > Public Key (oTCwSVG-NBiwQu8nU)
-    const EMAILJS_SERVICE_ID  = 'service_462b5hd';   // Email Services > Service ID (service_462b5hd)
-    const EMAILJS_TEMPLATE_ID = 'template_wpwphaq';  // Email Templates > Template ID (template_wpwphaq
+    const EMAILJS_PUBLIC_KEY  = 'oTCwSVG-NBiwQu8nU';   // Account > Public Key
+    const EMAILJS_SERVICE_ID  = 'service_462b5hd';   // Email Services > Service ID
+    const EMAILJS_TEMPLATE_ID = 'template_wpwphaq';  // Email Templates > Template ID
 
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -1294,8 +1295,6 @@
         .catch(() => {
           status.className = 'form-status error';
           status.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
-        })
-        .finally(() => {
           btn.disabled = false;
           btn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message';
         });
