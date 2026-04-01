@@ -1294,6 +1294,8 @@
         .catch(() => {
           status.className = 'form-status error';
           status.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+        })
+        .finally(() => {
           btn.disabled = false;
           btn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message';
         });
