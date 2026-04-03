@@ -1286,7 +1286,14 @@
       status.textContent = '';
 
       const form = this;
-      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+      const templateParams = {
+        subject: document.getElementById('subject').value,
+        from_email: document.getElementById('from_email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+      };
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         .then(() => {
           form.reset();
           form.style.display = 'none';
