@@ -578,6 +578,75 @@
       background: var(--dark); color: rgba(255,255,255,.4);
       padding: 3rem 2rem; text-align: center;
     }
+    /* ── PDF Modal ─────────────────────────────────────── */
+    .pdf-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.8);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn .2s;
+    }
+    .pdf-modal.active {
+      display: flex;
+    }
+    .pdf-modal-content {
+      background: white;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0,0,0,.3);
+    }
+    .pdf-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+      background: #f5f5f5;
+    }
+    .pdf-modal-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .pdf-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #999;
+      cursor: pointer;
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .2s;
+    }
+    .pdf-modal-close:hover {
+      color: #333;
+    }
+    .pdf-modal-body {
+      flex: 1;
+      overflow: auto;
+    }
+    .pdf-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .footer-name {
       font-size: 1.5rem; font-weight: 900; color: var(--white);
       letter-spacing: -1px; margin-bottom: .5rem;
@@ -659,9 +728,9 @@
           to AI-powered retail kiosks and robot cafes. Two master's degrees, 13 professional certifications,
           and a record of turning complex technical challenges into shipped products.
         </p>
-        <blockquote class="hero-quote" data-i18n-html="hero.quote">
+        <blockquote class="hero-quote" role="button" tabindex="0" id="quoteBtn" style="cursor: pointer; text-decoration: underline; opacity: 0.9; transition: opacity .2s;" title="Click to view source document" data-i18n-html="hero.quote">
           "The way to overcome obstacles?&nbsp; Selection and Focus.<br>
-          Pick the biggest problem. Concentrate on it. The answer will appear."
+          Identify your biggest problem, concentrate all efforts, and the solution will emerge."
         </blockquote>
         <div class="hero-pills">
           <span class="pill p-blue">ATM / Fintech</span>
@@ -1303,6 +1372,19 @@
     </div>
   </footer>
 
+  <!-- ── PDF Modal ────────────────────────────────────────── -->
+  <div class="pdf-modal" id="pdfModal">
+    <div class="pdf-modal-content">
+      <div class="pdf-modal-header">
+        <div class="pdf-modal-title">Hyosung Magazine (June 2006)</div>
+        <button class="pdf-modal-close" id="pdfModalClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe src="ref-my-profile/회사화보/webzine_200602.pdf#page=1" title="Hyosung Magazine PDF"></iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Scripts ───────────────────────────────────────────── -->
   <script>
     // ── i18n Translations ──────────────────────────────────
@@ -1321,7 +1403,7 @@
         'hero.badge': 'Hyosung TNS &nbsp;·&nbsp; 25 Years',
         'hero.title': 'Senior SW Engineer &amp; Technical Strategist',
         'hero.sub': '25+ years building ATM/Fintech software at Hyosung TNS — from embedded C on CD machines to AI-powered retail kiosks and robot cafes. Two master\'s degrees, 13 professional certifications, and a record of turning complex technical challenges into shipped products.',
-        'hero.quote': '"The way to overcome obstacles?&nbsp; Selection and Focus.<br>Pick the biggest problem. Concentrate on it. The answer will appear."',
+        'hero.quote': '"The way to overcome obstacles?&nbsp; Selection and Focus.<br>Identify your biggest problem, concentrate all efforts, and the solution will emerge."',
         'hero.stat.exp': 'Years of Experience',
         'hero.stat.cert': 'Certifications',
         'hero.stat.awards': 'Awards &amp; Honors',
@@ -1516,6 +1598,40 @@
 
     // 페이지 로드 시 저장된 언어 적용 (나머지 JS 초기화 전)
     applyTranslations(currentLang);
+
+    // ── PDF Modal Handler ──────────────────────────────────
+    const pdfModal = document.getElementById('pdfModal');
+    const quoteBtn = document.getElementById('quoteBtn');
+    const pdfModalClose = document.getElementById('pdfModalClose');
+
+    function openPdfModal() {
+      pdfModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePdfModal() {
+      pdfModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    quoteBtn.addEventListener('click', openPdfModal);
+    quoteBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openPdfModal();
+      }
+    });
+    pdfModalClose.addEventListener('click', closePdfModal);
+    pdfModal.addEventListener('click', (e) => {
+      if (e.target === pdfModal) closePdfModal();
+    });
+
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+        closePdfModal();
+      }
+    });
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
