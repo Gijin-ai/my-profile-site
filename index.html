@@ -77,7 +77,7 @@
     .sec-title .a-green { color: var(--green); }
 
     /* scroll fade-in */
-    .fi { opacity: 0; transform: translateY(22px); transition: opacity .5s ease, transform .5s ease; }
+    .fi { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
     .fi.vis { opacity: 1; transform: none; }
 
     /* ── Navigation ──────────────────────────────────────── */
@@ -306,7 +306,7 @@
 
     /* hero photo */
     .hero-photo-wrap {
-      flex-shrink: 0; position: relative;
+      flex-shrink: 0; position: relative; align-self: flex-start; margin-top: 80px;
     }
     .hero-photo {
       width: 260px; height: 320px; object-fit: cover; object-position: top;
@@ -809,10 +809,10 @@
           Identify your biggest problem, concentrate all efforts, and the solution will emerge."
         </blockquote>
         <div class="quote-images">
-          <div class="quote-image-box" onclick="openImageModal(0)" title="Click to view company magazine page 1">
+          <div class="quote-image-box" onclick="window.openImageModal(0)" title="Click to view company magazine page 1">
             <img src="ref-my-profile/회사화보/webzine_page-01.png" alt="Company magazine page 1">
           </div>
-          <div class="quote-image-box" onclick="openImageModal(1)" title="Click to view company magazine page 2">
+          <div class="quote-image-box" onclick="window.openImageModal(1)" title="Click to view company magazine page 2">
             <img src="ref-my-profile/회사화보/webzine_page-02.png" alt="Company magazine page 2">
           </div>
         </div>
@@ -1721,13 +1721,7 @@
       document.body.style.overflow = '';
     }
 
-    quoteBtn.addEventListener('click', openPdfModal);
-    quoteBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openPdfModal();
-      }
-    });
+    // quoteBtn event listeners removed - element not found
     pdfModalClose.addEventListener('click', closePdfModal);
     pdfModal.addEventListener('click', (e) => {
       if (e.target === pdfModal) closePdfModal();
@@ -1828,40 +1822,49 @@
     ];
 
     window.openImageModal = function(index) {
-      const modal = document.getElementById('imageModal');
-      const img = document.getElementById('modalImage');
-      const loading = document.getElementById('imageLoading');
+      try {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImage');
+        const loading = document.getElementById('imageLoading');
 
-      // Show loading spinner
-      loading.classList.add('active');
-      img.src = '';
+        if (!modal || !img || !loading) {
+          console.error('Modal elements not found');
+          return;
+        }
 
-      // Open modal
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+        loading.classList.add('active');
+        img.src = '';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
 
-      // Load image
-      const newImg = new Image();
-      newImg.onload = function() {
-        loading.classList.remove('active');
-        img.src = imageFiles[index];
-      };
-      newImg.onerror = function() {
-        loading.classList.remove('active');
-        img.alt = 'Failed to load image';
-      };
-      newImg.src = imageFiles[index];
+        const newImg = new Image();
+        newImg.onload = function() {
+          loading.classList.remove('active');
+          img.src = imageFiles[index];
+        };
+        newImg.onerror = function() {
+          loading.classList.remove('active');
+          img.alt = 'Failed to load image';
+        };
+        newImg.src = imageFiles[index];
+      } catch(e) {
+        console.error('Error opening modal:', e);
+      }
     };
 
     window.closeImageModal = function() {
-      const modal = document.getElementById('imageModal');
-      const loading = document.getElementById('imageLoading');
-      const img = document.getElementById('modalImage');
+      try {
+        const modal = document.getElementById('imageModal');
+        const loading = document.getElementById('imageLoading');
+        const img = document.getElementById('modalImage');
 
-      modal.classList.remove('active');
-      loading.classList.remove('active');
-      img.src = '';
-      document.body.style.overflow = 'auto';
+        if (modal) modal.classList.remove('active');
+        if (loading) loading.classList.remove('active');
+        if (img) img.src = '';
+        document.body.style.overflow = 'auto';
+      } catch(e) {
+        console.error('Error closing modal:', e);
+      }
     };
 
     // Close modal on ESC key
