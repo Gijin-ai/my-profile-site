@@ -62,6 +62,11 @@
       letter-spacing: 3px; text-transform: uppercase;
       color: var(--blue); margin-bottom: .875rem;
     }
+    html[lang="ko"] .sec-label {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: none;
+    }
     .sec-title {
       font-size: clamp(1.75rem, 4vw, 2.625rem);
       font-weight: 800; letter-spacing: -1px;
@@ -215,6 +220,51 @@
     .hero-quote:hover {
       background: rgba(77,135,255,.18);
       border-color: #fff;
+    }
+    .quote-images { display: flex; gap: 1rem; margin-top: 1rem; }
+    .quote-image-box {
+      position: relative; cursor: pointer;
+      width: 80px; height: 100px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .quote-image-box:hover {
+      border-color: var(--blue-lt);
+    }
+    .quote-image-box img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-modal {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.95); align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .image-modal.active {
+      display: flex;
+    }
+    .image-modal-content {
+      max-width: 90vw; max-height: 90vh;
+      position: relative;
+    }
+    .image-modal-content img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      max-height: 85vh;
+    }
+    .image-modal-close {
+      position: absolute; top: 10px; right: 20px;
+      color: white; font-size: 2rem; cursor: pointer;
+      background: none; border: none; padding: 0;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .image-modal-close:hover {
+      color: var(--blue-lt);
     }
     .hero-pills { display: flex; flex-wrap: wrap; gap: .625rem; margin-bottom: 3rem; }
     .pill {
@@ -735,9 +785,17 @@
           to AI-powered retail kiosks and robot cafes. Two master's degrees, 13 professional certifications,
           and a record of turning complex technical challenges into shipped products.
         </p>
-        <blockquote class="hero-quote" role="button" tabindex="0" id="quoteBtn" style="cursor: pointer;" title="Click to view source document" data-i18n-html="hero.quote">
+        <blockquote class="hero-quote" data-i18n-html="hero.quote">
           "The way to overcome obstacles?&nbsp; Selection and Focus.<br>
           Identify your biggest problem, concentrate all efforts, and the solution will emerge."
+          <div class="quote-images">
+            <div class="quote-image-box" onclick="openImageModal(0)" title="Open company magazine page 1">
+              <img src="webzine_page-01.png" alt="Company magazine page 1">
+            </div>
+            <div class="quote-image-box" onclick="openImageModal(1)" title="Open company magazine page 2">
+              <img src="webzine_page-02.png" alt="Company magazine page 2">
+            </div>
+          </div>
         </blockquote>
         <div class="hero-pills">
           <span class="pill p-blue">ATM / Fintech</span>
@@ -777,6 +835,14 @@
       </div>
     </div>
   </section>
+
+  <!-- Image Modal Popup -->
+  <div class="image-modal" id="imageModal">
+    <div class="image-modal-content">
+      <button class="image-modal-close" onclick="closeImageModal()">×</button>
+      <img id="modalImage" src="" alt="Full size image">
+    </div>
+  </div>
 
   <!-- ── About ────────────────────────────────────────────── -->
   <section id="about" class="section">
@@ -1720,6 +1786,36 @@
       }, { rootMargin: '-40% 0px -55% 0px' });
       sections.forEach(s => navObs.observe(s));
     }
+
+    // Image Modal Functions
+    const imageFiles = [
+      'ref-my-profile/회사화보/webzine_page-01.png',
+      'ref-my-profile/회사화보/webzine_page-02.png'
+    ];
+
+    window.openImageModal = function(index) {
+      const modal = document.getElementById('imageModal');
+      const img = document.getElementById('modalImage');
+      img.src = imageFiles[index];
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeImageModal = function() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    };
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeImageModal();
+    });
+
+    // Close modal on background click
+    document.getElementById('imageModal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'imageModal') closeImageModal();
+    });
   </script>
 
 </body>
