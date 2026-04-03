@@ -261,18 +261,23 @@
       max-width: 560px; line-height: 1.8; margin-bottom: 2rem;
     }
     .hero-quote {
-      font-family: var(--mono); font-size: .9rem;
-      color: rgba(255,255,255,.9);
-      background: rgba(77,135,255,.1);
-      border-left: 3px solid var(--blue-lt);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      font-size: .95rem; font-weight: 700; letter-spacing: 0.3px;
+      color: rgba(255,255,255,.95);
+      background: rgba(77,135,255,.12);
+      border-left: 4px solid var(--blue-lt);
       border-radius: 0 6px 6px 0;
-      padding: .85rem 1.2rem; margin-bottom: 2.25rem;
-      font-style: italic; line-height: 1.9;
+      padding: 1rem 1.2rem; margin-bottom: 2.25rem;
+      line-height: 1.85;
       transition: background .2s, border-color .2s;
     }
     .hero-quote:hover {
       background: rgba(77,135,255,.18);
       border-color: #fff;
+    }
+    .quote-highlight {
+      color: var(--red-lt); font-weight: 800; font-size: 1.05em;
+      text-shadow: 0 0 12px rgba(255,77,96,.3);
     }
     .quote-images { display: flex; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2.25rem; }
     .quote-image-box {
@@ -1604,7 +1609,7 @@
         'hero.badge': '효성TNS &nbsp;·&nbsp; 25년',
         'hero.title': '수석 SW 엔지니어 & 기술 전략가',
         'hero.sub': '효성TNS에서 25년 이상 ATM/핀테크 소프트웨어를 개발해왔습니다. CD/ATM 펌웨어부터 AI 기반 소매 키오스크, 로봇 카페까지. 2개의 석사 학위, 13개 전문 자격증, 복잡한 기술 과제를 실제 제품으로 만든 경력이 있습니다.',
-        'hero.quote': '"장애물을 넘는 방법은?&nbsp; 선택과 집중입니다.<br>가장 큰 문제를 선택하고, 거기에 집중하면 답이 보입니다."',
+        'hero.quote': '"장애물을 넘는 방법은?&nbsp; <span class="quote-highlight">선택과 집중</span>입니다.<br>가장 큰 문제를 선택하고, 거기에 집중하면 답이 보입니다."',
         'hero.stat.exp': '년 경력',
         'hero.stat.cert': '자격증',
         'hero.stat.awards': '수상 실적',
