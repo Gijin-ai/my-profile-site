@@ -113,6 +113,11 @@
     .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
     /* ── Language Toggle ────────────────────────────────── */
+    .lang-en { display: inline; }
+    .lang-ko { display: none; }
+    body.lang-ko .lang-en { display: none !important; }
+    body.lang-ko .lang-ko { display: inline; }
+
     .lang-toggle {
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.2);
@@ -810,10 +815,10 @@
         </blockquote>
         <div class="quote-images">
           <div class="quote-image-box" onclick="window.openImageModal(0)" title="Click to view company magazine page 1">
-            <img src="ref-my-profile/회사화보/webzine_page-01.png" alt="Company magazine page 1">
+            <img src="webzine_page-01.png" alt="Company magazine page 1">
           </div>
           <div class="quote-image-box" onclick="window.openImageModal(1)" title="Click to view company magazine page 2">
-            <img src="ref-my-profile/회사화보/webzine_page-02.png" alt="Company magazine page 2">
+            <img src="webzine_page-02.png" alt="Company magazine page 2">
           </div>
         </div>
         <div class="hero-pills">
@@ -846,7 +851,7 @@
       <div class="hero-photo-wrap">
         <img
           class="hero-photo"
-          src="ref-my-profile/회사화보/my-profile-gen-side-0405.png"
+          src="my-profile-gen-side-0405.png"
           alt="Gijin Kim — profile photo"
           fetchpriority="high"
         >
@@ -956,81 +961,62 @@
         <div class="t-item fi">
           <div class="t-dot g"></div>
           <div class="t-date g">2025 – 2026 · Current</div>
-          <div class="t-role">Technical Sales Support Engineer</div>
-          <div class="t-co">기술영업지원팀 · Hyosung TNS</div>
-          <p class="t-desc">
-            Built an ATM SW licence management system to track and govern software licensing across the
-            product portfolio. Delivers technical education sessions to the sales organisation, translating
-            engineering capabilities into competitive advantage. Analyses SW RFPs and crafts technical
-            response strategies for key bids.
-          </p>
+          <div class="t-role"><span class="lang-en">Technical Sales Support Engineer</span><span class="lang-ko">ATM SW 라이선스 관리 및 영업 지원</span></div>
+          <div class="t-co"><span class="lang-en">Technical Sales Support Team · Hyosung TNS</span><span class="lang-ko">기술영업지원팀 · Hyosung TNS</span></div>
+          <p class="t-desc"><span class="lang-en">Built an ATM SW licence management system to track and govern software licensing across the product portfolio. Delivers technical education sessions to the sales organisation, translating engineering capabilities into competitive advantage. Analyses SW RFPs and crafts technical response strategies for key bids.</span><span class="lang-ko">ATM 소프트웨어 라이선스 관리 체계를 구축하고, 영업 조직의 기술 역량 강화를 지원하며, 주요 입찰에 대한 기술 대응 전략을 수립하는 실무형 IT 전문가입니다.</span></p>
           <div class="t-tags">
-            <span class="tag tag-g">SW License Mgmt</span>
-            <span class="tag tag-b">RFP Analysis</span>
-            <span class="tag tag-b">Technical Training</span>
-            <span class="tag tag-k">Sales Enablement</span>
+            <span class="tag tag-g"><span class="lang-en">SW License Mgmt</span><span class="lang-ko">SW 라이선스 관리</span></span>
+            <span class="tag tag-b"><span class="lang-en">RFP Analysis</span><span class="lang-ko">RFP 분석</span></span>
+            <span class="tag tag-b"><span class="lang-en">Technical Training</span><span class="lang-ko">기술 교육</span></span>
+            <span class="tag tag-k"><span class="lang-en">Sales Enablement</span><span class="lang-ko">영업 지원</span></span>
           </div>
         </div>
 
         <div class="t-item fi">
           <div class="t-dot r"></div>
           <div class="t-date r">2022 – 2024</div>
-          <div class="t-role">Solution Development Engineer</div>
-          <div class="t-co">솔루션개발팀 · Hyosung TNS</div>
-          <p class="t-desc">
-            Led development and operations of next-generation retail automation: POS/SCO terminals,
-            AI-powered smart refrigerators, robot café systems, and the Olive Young self-checkout (SCO)
-            solution — bringing intelligent, connected retail experiences to market.
-          </p>
+          <div class="t-role"><span class="lang-en">Solution Development Engineer</span><span class="lang-ko">리테일 자동화 솔루션 개발 및 운영</span></div>
+          <div class="t-co"><span class="lang-en">Solution Development Team · Hyosung TNS</span><span class="lang-ko">솔루션개발팀 · Hyosung TNS</span></div>
+          <p class="t-desc"><span class="lang-en">Led development and operations of next-generation retail automation: POS/SCO terminals, AI-powered smart refrigerators, robot café systems, and the Olive Young self-checkout (SCO) solution — bringing intelligent, connected retail experiences to market.</span><span class="lang-ko">POS/SCO 단말기부터 AI 냉장고, 로봇 카페, 올리브영 셀프 체크아웃(SCO) 솔루션까지 차세대 리테일 자동화 솔루션의 개발을 주도하며, 리테일 경험을 갖춘 솔루션을 구축했습니다.</span></p>
           <div class="t-tags">
-            <span class="tag tag-r">POS / SCO</span>
-            <span class="tag tag-r">AI Refrigerator</span>
-            <span class="tag tag-r">Robot Café</span>
-            <span class="tag tag-b">Olive Young SCO</span>
-            <span class="tag tag-k">C / C++</span>
-            <span class="tag tag-k">Java</span>
+            <span class="tag tag-r"><span class="lang-en">POS / SCO</span><span class="lang-ko">POS / SCO</span></span>
+            <span class="tag tag-r"><span class="lang-en">AI Refrigerator</span><span class="lang-ko">AI 냉장고</span></span>
+            <span class="tag tag-r"><span class="lang-en">Robot Café</span><span class="lang-ko">로봇 카페</span></span>
+            <span class="tag tag-b"><span class="lang-en">Olive Young SCO</span><span class="lang-ko">올리브영 SCO</span></span>
+            <span class="tag tag-k"><span class="lang-en">C / C++</span><span class="lang-ko">C / C++</span></span>
+            <span class="tag tag-k"><span class="lang-en">Java</span><span class="lang-ko">Java</span></span>
           </div>
         </div>
 
         <div class="t-item fi">
           <div class="t-dot"></div>
           <div class="t-date">2013 – 2021</div>
-          <div class="t-role">Senior Domestic SW Engineer</div>
-          <div class="t-co">국내SW팀 · Hyosung TNS</div>
-          <p class="t-desc">
-            Core developer for the domestic software portfolio: CD/ATM firmware, an ATM
-            remote-management solution, Shinsegae retail cash-counting/exchange/teller machines,
-            and KIOSK platforms. Served as architect and tech lead across multiple simultaneous products.
-          </p>
+          <div class="t-role"><span class="lang-en">Senior Domestic SW Engineer</span><span class="lang-ko">국내 소프트웨어 개발 및 아키텍팅</span></div>
+          <div class="t-co"><span class="lang-en">Domestic SW Team · Hyosung TNS</span><span class="lang-ko">국내SW팀 · Hyosung TNS</span></div>
+          <p class="t-desc"><span class="lang-en">Core developer for the domestic software portfolio: CD/ATM firmware, an ATM remote-management solution, Shinsegae retail cash-counting/exchange/teller machines, and KIOSK platforms. Served as architect and tech lead across multiple simultaneous products.</span><span class="lang-ko">CD/ATM 펌웨어, ATM 원격 관리 솔루션, 신세계 현금정산기/환전기/시제기, KIOSK 플랫폼 개발. 여러 제품에 걸쳐 아키텍트 및 기술 리더로 활동했습니다.</span></p>
           <div class="t-tags">
-            <span class="tag tag-b">CD / ATM SW</span>
-            <span class="tag tag-b">ATM Mgmt Solution</span>
-            <span class="tag tag-k">Cash Recycler</span>
-            <span class="tag tag-k">KIOSK</span>
-            <span class="tag tag-g">C / C++</span>
-            <span class="tag tag-g">Java</span>
-            <span class="tag tag-g">SQL</span>
+            <span class="tag tag-b"><span class="lang-en">CD / ATM SW</span><span class="lang-ko">CD / ATM SW</span></span>
+            <span class="tag tag-b"><span class="lang-en">ATM Mgmt Solution</span><span class="lang-ko">ATM 관리 솔루션</span></span>
+            <span class="tag tag-k"><span class="lang-en">Cash Recycler</span><span class="lang-ko">현금 재활용기</span></span>
+            <span class="tag tag-k"><span class="lang-en">KIOSK</span><span class="lang-ko">KIOSK</span></span>
+            <span class="tag tag-g"><span class="lang-en">C / C++</span><span class="lang-ko">C / C++</span></span>
+            <span class="tag tag-g"><span class="lang-en">Java</span><span class="lang-ko">Java</span></span>
+            <span class="tag tag-g"><span class="lang-en">SQL</span><span class="lang-ko">SQL</span></span>
           </div>
         </div>
 
         <div class="t-item fi">
           <div class="t-dot"></div>
           <div class="t-date">2001 – 2012</div>
-          <div class="t-role">CD/ATM Development &amp; Operations Engineer</div>
-          <div class="t-co">자동기서비스사업팀 · Hyosung TNS</div>
-          <p class="t-desc">
-            Joined Hyosung as a new-business engineer on the CD Service Business Team. Developed and
-            maintained CD/ATM software from the ground up. Independently designed a <strong>Power
-            Controller</strong> that reduced fault-dispatch calls by 85%, was selected
-            as <em>Change Leader</em> (2005), and was featured on the company magazine cover (Feb 2006)
-            for this achievement.
-          </p>
+          <div class="t-role"><span class="lang-en">CD/ATM Development &amp; Operations Engineer</span><span class="lang-ko">CD/ATM 개발 및 운영 엔지니어</span></div>
+          <div class="t-co"><span class="lang-en">CD Service Business Team · Hyosung TNS</span><span class="lang-ko">자동기서비스사업팀 · Hyosung TNS</span></div>
+          <p class="t-desc"><span class="lang-en">Joined Hyosung as a new-business engineer on the CD Service Business Team. Developed and maintained CD/ATM software from the ground up. Independently designed a Power Controller that reduced fault-dispatch calls by 85%, was selected as Change Leader (2005), and was featured on the company magazine cover (Feb 2006) for this achievement.</span><span class="lang-ko">Hyosung 자동기서비스사업팀의 신사업 엔지니어로 입사하여 CD/ATM 소프트웨어를 처음부터 개발하고 운영. 장애 출동을 85% 감소시킨 Power Controller를 독립적으로 설계하여 Change Leader로 선정(2005)되었으며, 회사 매거진 표지(2006년 2월)에 게재되었습니다.</span></p>
           <div class="t-tags">
-            <span class="tag tag-b">CD / ATM Firmware</span>
-            <span class="tag tag-b">Power Controller</span>
-            <span class="tag tag-k">C / C++</span>
-            <span class="tag tag-k">Windows / Linux</span>
-            <span class="tag tag-g">−85% Fault Dispatches</span>
+            <span class="tag tag-b"><span class="lang-en">CD / ATM Firmware</span><span class="lang-ko">CD / ATM 펌웨어</span></span>
+            <span class="tag tag-b"><span class="lang-en">Power Controller</span><span class="lang-ko">전원 제어기</span></span>
+            <span class="tag tag-k"><span class="lang-en">C / C++</span><span class="lang-ko">C / C++</span></span>
+            <span class="tag tag-k"><span class="lang-en">Windows / Linux</span><span class="lang-ko">Windows / Linux</span></span>
+            <span class="tag tag-g"><span class="lang-en">−85% Fault Dispatches</span><span class="lang-ko">−85% 장애 출동</span></span>
           </div>
         </div>
 
@@ -1817,8 +1803,8 @@
 
     // Image Modal Functions
     const imageFiles = [
-      'ref-my-profile/회사화보/webzine_page-01.png',
-      'ref-my-profile/회사화보/webzine_page-02.png'
+      'webzine_page-01.png',
+      'webzine_page-02.png'
     ];
 
     window.openImageModal = function(index) {
