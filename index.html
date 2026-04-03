@@ -221,7 +221,7 @@
       background: rgba(77,135,255,.18);
       border-color: #fff;
     }
-    .quote-images { display: flex; gap: 1rem; margin-top: 1rem; }
+    .quote-images { display: flex; gap: 1rem; margin-top: 1.5rem; margin-bottom: 2.25rem; }
     .quote-image-box {
       position: relative; cursor: pointer;
       width: 80px; height: 100px;
@@ -265,6 +265,19 @@
     }
     .image-modal-close:hover {
       color: var(--blue-lt);
+    }
+    .image-loading {
+      display: none; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem; color: white;
+    }
+    .image-loading.active {
+      display: block;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
     }
     .hero-pills { display: flex; flex-wrap: wrap; gap: .625rem; margin-bottom: 3rem; }
     .pill {
@@ -788,15 +801,15 @@
         <blockquote class="hero-quote" data-i18n-html="hero.quote">
           "The way to overcome obstacles?&nbsp; Selection and Focus.<br>
           Identify your biggest problem, concentrate all efforts, and the solution will emerge."
-          <div class="quote-images">
-            <div class="quote-image-box" onclick="openImageModal(0)" title="Open company magazine page 1">
-              <img src="webzine_page-01.png" alt="Company magazine page 1">
-            </div>
-            <div class="quote-image-box" onclick="openImageModal(1)" title="Open company magazine page 2">
-              <img src="webzine_page-02.png" alt="Company magazine page 2">
-            </div>
-          </div>
         </blockquote>
+        <div class="quote-images">
+          <div class="quote-image-box" onclick="openImageModal(0)" title="Click to view company magazine page 1">
+            <img src="ref-my-profile/회사화보/webzine_page-01.png" alt="Company magazine page 1">
+          </div>
+          <div class="quote-image-box" onclick="openImageModal(1)" title="Click to view company magazine page 2">
+            <img src="ref-my-profile/회사화보/webzine_page-02.png" alt="Company magazine page 2">
+          </div>
+        </div>
         <div class="hero-pills">
           <span class="pill p-blue">ATM / Fintech</span>
           <span class="pill p-blue">Embedded Systems</span>
@@ -840,7 +853,8 @@
   <div class="image-modal" id="imageModal">
     <div class="image-modal-content">
       <button class="image-modal-close" onclick="closeImageModal()">×</button>
-      <img id="modalImage" src="" alt="Full size image">
+      <div class="image-loading" id="imageLoading"><i class="fa-solid fa-circle-notch"></i></div>
+      <img id="modalImage" src="" alt="Full size image" style="display: none;">
     </div>
   </div>
 
@@ -1796,14 +1810,34 @@
     window.openImageModal = function(index) {
       const modal = document.getElementById('imageModal');
       const img = document.getElementById('modalImage');
-      img.src = imageFiles[index];
+      const loading = document.getElementById('imageLoading');
+
       modal.classList.add('active');
+      loading.classList.add('active');
+      img.style.display = 'none';
       document.body.style.overflow = 'hidden';
+
+      img.onload = function() {
+        loading.classList.remove('active');
+        img.style.display = 'block';
+      };
+
+      img.onerror = function() {
+        loading.classList.remove('active');
+        img.style.display = 'block';
+        img.alt = 'Failed to load image';
+      };
+
+      img.src = imageFiles[index];
     };
 
     window.closeImageModal = function() {
       const modal = document.getElementById('imageModal');
+      const loading = document.getElementById('imageLoading');
+      const img = document.getElementById('modalImage');
       modal.classList.remove('active');
+      loading.classList.remove('active');
+      img.style.display = 'none';
       document.body.style.overflow = 'auto';
     };
 
