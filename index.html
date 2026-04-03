@@ -239,37 +239,41 @@
       display: block;
     }
     .image-modal {
-      display: none; position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,.95); align-items: center; justify-content: center;
-      padding: 2rem;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,.95); z-index: 9999;
+      display: none; align-items: center; justify-content: center;
+      overflow: auto; padding: 2rem;
     }
     .image-modal.active {
       display: flex;
     }
+    .image-modal-wrapper {
+      position: relative; display: flex; align-items: center;
+      justify-content: center; width: 100%;
+    }
     .image-modal-content {
-      max-width: 90vw; max-height: 90vh;
-      position: relative;
+      max-width: 90vw; max-height: 90vh; position: relative;
+      display: flex; align-items: center; justify-content: center;
     }
     .image-modal-content img {
-      width: 100%; height: 100%;
-      object-fit: contain;
+      max-width: 100%; max-height: 85vh; object-fit: contain;
       display: block;
-      max-height: 85vh;
     }
     .image-modal-close {
-      position: absolute; top: 10px; right: 20px;
-      color: white; font-size: 2rem; cursor: pointer;
+      position: fixed; top: 20px; right: 30px;
+      color: white; font-size: 3rem; cursor: pointer;
       background: none; border: none; padding: 0;
-      width: 40px; height: 40px;
+      width: 50px; height: 50px; z-index: 10000;
       display: flex; align-items: center; justify-content: center;
+      line-height: 1;
     }
     .image-modal-close:hover {
       color: var(--blue-lt);
     }
     .image-loading {
-      display: none; position: absolute; top: 50%; left: 50%;
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 2rem; color: white;
+      font-size: 2.5rem; color: white; display: none;
     }
     .image-loading.active {
       display: block;
@@ -853,10 +857,12 @@
 
   <!-- Image Modal Popup -->
   <div class="image-modal" id="imageModal">
-    <div class="image-modal-content">
-      <button class="image-modal-close" onclick="closeImageModal()">×</button>
+    <button class="image-modal-close" onclick="closeImageModal()" title="Close (ESC)">×</button>
+    <div class="image-modal-wrapper">
       <div class="image-loading" id="imageLoading"><i class="fa-solid fa-circle-notch"></i></div>
-      <img id="modalImage" src="" alt="Full size image" style="display: none;">
+      <div class="image-modal-content">
+        <img id="modalImage" src="" alt="Full size image">
+      </div>
     </div>
   </div>
 
@@ -1814,43 +1820,50 @@
       const img = document.getElementById('modalImage');
       const loading = document.getElementById('imageLoading');
 
-      modal.classList.add('active');
+      // Show loading spinner
       loading.classList.add('active');
-      img.style.display = 'none';
+      img.src = '';
+
+      // Open modal
+      modal.classList.add('active');
       document.body.style.overflow = 'hidden';
 
-      img.onload = function() {
+      // Load image
+      const newImg = new Image();
+      newImg.onload = function() {
         loading.classList.remove('active');
-        img.style.display = 'block';
+        img.src = imageFiles[index];
       };
-
-      img.onerror = function() {
+      newImg.onerror = function() {
         loading.classList.remove('active');
-        img.style.display = 'block';
         img.alt = 'Failed to load image';
       };
-
-      img.src = imageFiles[index];
+      newImg.src = imageFiles[index];
     };
 
     window.closeImageModal = function() {
       const modal = document.getElementById('imageModal');
       const loading = document.getElementById('imageLoading');
       const img = document.getElementById('modalImage');
+
       modal.classList.remove('active');
       loading.classList.remove('active');
-      img.style.display = 'none';
+      img.src = '';
       document.body.style.overflow = 'auto';
     };
 
     // Close modal on ESC key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeImageModal();
+      if (e.key === 'Escape' && document.getElementById('imageModal').classList.contains('active')) {
+        closeImageModal();
+      }
     });
 
     // Close modal on background click
-    document.getElementById('imageModal')?.addEventListener('click', (e) => {
-      if (e.target.id === 'imageModal') closeImageModal();
+    document.getElementById('imageModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('imageModal')) {
+        closeImageModal();
+      }
     });
   </script>
 
