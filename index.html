@@ -7,7 +7,7 @@
   <meta name="description" content="25-year veteran software engineer at Hyosung TNS. ATM/Fintech, AI, Embedded Systems, POS/SCO, and technical leadership.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eqjn08KoiCLZQAJe3skrwpfhvQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
@@ -46,6 +46,10 @@
       background: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+    html[lang="ko"] body {
+      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      word-break: keep-all;
     }
 
     /* ── Utilities ───────────────────────────────────────── */
@@ -102,6 +106,33 @@
     .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .burger.open span:nth-child(2) { opacity: 0; }
     .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    /* ── Language Toggle ────────────────────────────────── */
+    .lang-toggle {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.75);
+      font-family: var(--mono);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      padding: .3rem .75rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+    .lang-toggle:hover {
+      background: rgba(0,71,255,.25);
+      border-color: rgba(0,71,255,.5);
+      color: var(--blue-lt);
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
 
     .nav-mobile {
       display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 199;
@@ -583,47 +614,52 @@
   <nav aria-label="Main navigation">
     <a class="nav-logo" href="#hero">Gijin <em>Kim</em></a>
     <ul class="nav-links" role="list">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#certifications">Certs</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#personality">Profile</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#education" data-i18n="nav.education">Education</a></li>
+      <li><a href="#certifications" data-i18n="nav.certs">Certs</a></li>
+      <li><a href="#awards" data-i18n="nav.awards">Awards</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#personality" data-i18n="nav.personality">Profile</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMobile">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" aria-label="언어 전환 (Switch language)">
+        <span class="lang-label" id="langLabel">한국어</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
   <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#about"          onclick="closeMenu()">About</a>
-    <a href="#experience"     onclick="closeMenu()">Experience</a>
-    <a href="#education"      onclick="closeMenu()">Education</a>
-    <a href="#certifications" onclick="closeMenu()">Certifications</a>
-    <a href="#awards"         onclick="closeMenu()">Awards</a>
-    <a href="#skills"         onclick="closeMenu()">Skills</a>
-    <a href="#personality"    onclick="closeMenu()">Personality Profile</a>
-    <a href="#contact"        onclick="closeMenu()">Contact</a>
+    <a href="#about"          onclick="closeMenu()" data-i18n="nav.about">About</a>
+    <a href="#experience"     onclick="closeMenu()" data-i18n="nav.experience">Experience</a>
+    <a href="#education"      onclick="closeMenu()" data-i18n="nav.education">Education</a>
+    <a href="#certifications" onclick="closeMenu()" data-i18n="nav.certs.full">Certifications</a>
+    <a href="#awards"         onclick="closeMenu()" data-i18n="nav.awards">Awards</a>
+    <a href="#skills"         onclick="closeMenu()" data-i18n="nav.skills">Skills</a>
+    <a href="#personality"    onclick="closeMenu()" data-i18n="nav.personality.full">Personality Profile</a>
+    <a href="#contact"        onclick="closeMenu()" data-i18n="nav.contact">Contact</a>
   </nav>
 
   <!-- ── Hero ────────────────────────────────────────────── -->
   <section id="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <div class="hero-badge">Hyosung TNS &nbsp;·&nbsp; 25 Years</div>
+        <div class="hero-badge" data-i18n="hero.badge">Hyosung TNS &nbsp;·&nbsp; 25 Years</div>
         <h1 class="hero-h1">
           Gijin <span class="c-blue">Kim</span><br>
-          <span style="font-size:clamp(1.4rem,3.5vw,2.5rem); color:rgba(255,255,255,.55); font-weight:400; letter-spacing:-.5px;">
+          <span style="font-size:clamp(1.4rem,3.5vw,2.5rem); color:rgba(255,255,255,.55); font-weight:400; letter-spacing:-.5px;" data-i18n="hero.title">
             Senior SW Engineer &amp; Technical Strategist
           </span>
         </h1>
-        <p class="hero-sub">
+        <p class="hero-sub" data-i18n="hero.sub">
           25+ years building ATM/Fintech software at Hyosung TNS — from embedded C on CD machines
           to AI-powered retail kiosks and robot cafes. Two master's degrees, 13 professional certifications,
           and a record of turning complex technical challenges into shipped products.
         </p>
-        <blockquote class="hero-quote">
+        <blockquote class="hero-quote" data-i18n-html="hero.quote">
           "The way to overcome obstacles?&nbsp; Selection and Focus.<br>
           Pick the biggest problem. Concentrate on it. The answer will appear."
         </blockquote>
@@ -638,19 +674,19 @@
         <div class="hero-stats">
           <div class="stat">
             <div class="stat-n">25<em>+</em></div>
-            <div class="stat-l">Years of Experience</div>
+            <div class="stat-l" data-i18n="hero.stat.exp">Years of Experience</div>
           </div>
           <div class="stat">
             <div class="stat-n">13</div>
-            <div class="stat-l">Certifications</div>
+            <div class="stat-l" data-i18n="hero.stat.cert">Certifications</div>
           </div>
           <div class="stat">
             <div class="stat-n">8</div>
-            <div class="stat-l">Awards &amp; Honors</div>
+            <div class="stat-l" data-i18n="hero.stat.awards">Awards &amp; Honors</div>
           </div>
           <div class="stat">
             <div class="stat-n">2</div>
-            <div class="stat-l">Master's Degrees</div>
+            <div class="stat-l" data-i18n="hero.stat.degrees">Master's Degrees</div>
           </div>
         </div>
       </div>
@@ -669,29 +705,29 @@
   <!-- ── About ────────────────────────────────────────────── -->
   <section id="about" class="section">
     <div class="container">
-      <p class="sec-label fi">About Me</p>
-      <h2 class="sec-title fi">Engineer. <span class="a-blue">Leader.</span> <span class="a-green">Builder.</span></h2>
+      <p class="sec-label fi" data-i18n="about.label">About Me</p>
+      <h2 class="sec-title fi" data-i18n-html="about.title">Engineer. <span class="a-blue">Leader.</span> <span class="a-green">Builder.</span></h2>
       <div class="about-grid">
         <div class="about-text fi">
-          <p>
+          <p data-i18n="about.p1">
             I joined Hyosung TNS in 2001 and have spent over two decades engineering
             financial automation software — starting with CD/ATM firmware and growing into
             full-stack solution development and technical strategy.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             Along the way I pursued parallel graduate studies, earning a master's in
             <strong>Information Security</strong> (KNOU, 2018) and a second master's in
             <strong>AI Engineering</strong> (Kookmin University, 2021), driven by a
             genuine belief that the best engineers keep learning.
           </p>
-          <p>
+          <p data-i18n="about.p3">
             In 2006 I was featured on the cover of Hyosung's company magazine after I
             independently designed a <strong>Power Controller</strong> that slashed ATM
             fault-dispatch calls by <strong>85%</strong> — a textbook example of
             identifying the root cause, selecting the critical fix, and executing it fully.
             That philosophy still guides my work today.
           </p>
-          <p>
+          <p data-i18n="about.p4">
             Currently I bridge engineering and business as part of the
             <strong>Technical Sales Support Team</strong>, building ATM SW licence
             management systems, conducting technology training for the sales force, and
@@ -702,43 +738,43 @@
           <div class="hl-card">
             <div class="hl-icon ic-b"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
             <div>
-              <span class="hl-title">ATM &amp; Fintech Systems</span>
-              <span class="hl-sub">12 yrs CD/ATM dev &amp; ops · ATM management solutions</span>
+              <span class="hl-title" data-i18n="about.hl1.title">ATM &amp; Fintech Systems</span>
+              <span class="hl-sub" data-i18n="about.hl1.sub">12 yrs CD/ATM dev &amp; ops · ATM management solutions</span>
             </div>
           </div>
           <div class="hl-card">
             <div class="hl-icon ic-g"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
             <div>
-              <span class="hl-title">Modern Retail Tech</span>
-              <span class="hl-sub">POS / SCO · AI refrigerator · Robot café · Olive Young SCO</span>
+              <span class="hl-title" data-i18n="about.hl2.title">Modern Retail Tech</span>
+              <span class="hl-sub" data-i18n="about.hl2.sub">POS / SCO · AI refrigerator · Robot café · Olive Young SCO</span>
             </div>
           </div>
           <div class="hl-card">
             <div class="hl-icon ic-r"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
             <div>
-              <span class="hl-title">AI &amp; Generative Tools</span>
-              <span class="hl-sub">Claude · ChatGPT · Gemini — docs, analysis, code</span>
+              <span class="hl-title" data-i18n="about.hl3.title">AI &amp; Generative Tools</span>
+              <span class="hl-sub" data-i18n="about.hl3.sub">Claude · ChatGPT · Gemini — docs, analysis, code</span>
             </div>
           </div>
           <div class="hl-card">
             <div class="hl-icon ic-b"><i class="fa-solid fa-chart-gantt" aria-hidden="true"></i></div>
             <div>
-              <span class="hl-title">Project Management</span>
-              <span class="hl-sub">PMP certified · Technical RFP analysis · Sales enablement</span>
+              <span class="hl-title" data-i18n="about.hl4.title">Project Management</span>
+              <span class="hl-sub" data-i18n="about.hl4.sub">PMP certified · Technical RFP analysis · Sales enablement</span>
             </div>
           </div>
           <div class="hl-card">
             <div class="hl-icon ic-g"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
             <div>
-              <span class="hl-title">Security &amp; Audit</span>
-              <span class="hl-sub">CISA certified · M.S. Information Security</span>
+              <span class="hl-title" data-i18n="about.hl5.title">Security &amp; Audit</span>
+              <span class="hl-sub" data-i18n="about.hl5.sub">CISA certified · M.S. Information Security</span>
             </div>
           </div>
           <div class="hl-card">
             <div class="hl-icon ic-r"><i class="fa-solid fa-person-running" aria-hidden="true"></i></div>
             <div>
-              <span class="hl-title">High Drive &amp; Initiative</span>
-              <span class="hl-sub">Cover story: Hyosung Magazine 2006 · Change Leader award</span>
+              <span class="hl-title" data-i18n="about.hl6.title">High Drive &amp; Initiative</span>
+              <span class="hl-sub" data-i18n="about.hl6.sub">Cover story: Hyosung Magazine 2006 · Change Leader award</span>
             </div>
           </div>
         </div>
@@ -749,8 +785,8 @@
   <!-- ── Experience ───────────────────────────────────────── -->
   <section id="experience" class="section">
     <div class="container">
-      <p class="sec-label fi">Career History</p>
-      <h2 class="sec-title fi">25 Years at <span class="a-blue">Hyosung TNS</span></h2>
+      <p class="sec-label fi" data-i18n="exp.label">Career History</p>
+      <h2 class="sec-title fi" data-i18n-html="exp.title">25 Years at <span class="a-blue">Hyosung TNS</span></h2>
       <div class="timeline">
 
         <div class="t-item fi">
@@ -841,8 +877,8 @@
   <!-- ── Education ────────────────────────────────────────── -->
   <section id="education" class="section">
     <div class="container">
-      <p class="sec-label fi">Academic Background</p>
-      <h2 class="sec-title fi">Two Master's. <span class="a-green">Lifelong Learner.</span></h2>
+      <p class="sec-label fi" data-i18n="edu.label">Academic Background</p>
+      <h2 class="sec-title fi" data-i18n-html="edu.title">Two Master's. <span class="a-green">Lifelong Learner.</span></h2>
       <div class="edu-grid">
 
         <div class="edu-card edu-msc fi">
@@ -887,8 +923,8 @@
   <!-- ── Certifications ───────────────────────────────────── -->
   <section id="certifications" class="section">
     <div class="container">
-      <p class="sec-label fi">Professional Credentials</p>
-      <h2 class="sec-title fi">13 Certifications — <span class="a-red">4 International</span></h2>
+      <p class="sec-label fi" data-i18n="cert.label">Professional Credentials</p>
+      <h2 class="sec-title fi" data-i18n-html="cert.title">13 Certifications — <span class="a-red">4 International</span></h2>
       <div class="cert-cols">
 
         <div class="fi">
@@ -958,8 +994,8 @@
   <!-- ── Awards ───────────────────────────────────────────── -->
   <section id="awards" class="section">
     <div class="container">
-      <p class="sec-label fi">Recognition</p>
-      <h2 class="sec-title fi">8 Awards Over <span class="a-blue">20 Years</span></h2>
+      <p class="sec-label fi" data-i18n="awards.label">Recognition</p>
+      <h2 class="sec-title fi" data-i18n-html="awards.title">8 Awards Over <span class="a-blue">20 Years</span></h2>
       <div class="awards-grid">
 
         <div class="award-card fi">
@@ -1033,8 +1069,8 @@
   <!-- ── Skills ───────────────────────────────────────────── -->
   <section id="skills" class="section">
     <div class="container">
-      <p class="sec-label fi">Technical Skills</p>
-      <h2 class="sec-title fi">Languages, <span class="a-blue">Platforms</span> &amp; <span class="a-green">Tools</span></h2>
+      <p class="sec-label fi" data-i18n="skills.label">Technical Skills</p>
+      <h2 class="sec-title fi" data-i18n-html="skills.title">Languages, <span class="a-blue">Platforms</span> &amp; <span class="a-green">Tools</span></h2>
       <div class="skills-grid">
 
         <div class="sk-box fi">
@@ -1103,8 +1139,8 @@
   <!-- ── Personality Profile ───────────────────────────────── -->
   <section id="personality" class="section">
     <div class="container">
-      <p class="sec-label fi">Personality Profile</p>
-      <h2 class="sec-title fi">Brain Orientation <span class="a-blue">Suitability Inventory</span></h2>
+      <p class="sec-label fi" data-i18n="personality.label">Personality Profile</p>
+      <h2 class="sec-title fi" data-i18n-html="personality.title">Brain Orientation <span class="a-blue">Suitability Inventory</span></h2>
       <p class="sec-intro fi">
         Results from the BOSI (Brain Orientation Suitability Inventory) assessment —
         a neuroscience-based aptitude framework by Brain OS Institute.
@@ -1183,50 +1219,54 @@
   <!-- ── Contact ──────────────────────────────────────────── -->
   <section id="contact" class="section">
     <div class="container">
-      <p class="sec-label fi"><i class="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp;Contact</p>
-      <h2 class="sec-title fi">Get in <span class="a-blue">Touch</span></h2>
+      <p class="sec-label fi" data-i18n="contact.label"><i class="fa-solid fa-envelope" aria-hidden="true"></i> &nbsp;Contact</p>
+      <h2 class="sec-title fi" data-i18n-html="contact.title">Get in <span class="a-blue">Touch</span></h2>
       <div class="contact-wrap fi">
         <form class="contact-form" id="contactForm" novalidate>
           <div class="form-group">
-            <label for="subject">제목 (Subject)</label>
+            <label for="subject" data-i18n="contact.subject.label">제목 (Subject)</label>
             <input
               type="text"
               id="subject"
               name="subject"
+              data-i18n-placeholder="contact.subject.placeholder"
               placeholder="문의 제목을 입력해 주세요"
               required
             >
           </div>
           <div class="form-group">
-            <label for="from_email">이메일 (Email)</label>
+            <label for="from_email" data-i18n="contact.email.label">이메일 (Email)</label>
             <input
               type="email"
               id="from_email"
               name="from_email"
+              data-i18n-placeholder="contact.email.placeholder"
               placeholder="your@email.com"
               required
             >
           </div>
           <div class="form-group">
-            <label for="phone">연락처 (Phone)</label>
+            <label for="phone" data-i18n="contact.phone.label">연락처 (Phone)</label>
             <input
               type="tel"
               id="phone"
               name="phone"
+              data-i18n-placeholder="contact.phone.placeholder"
               placeholder="010-0000-0000"
             >
           </div>
           <div class="form-group">
-            <label for="message">내용 (Message)</label>
+            <label for="message" data-i18n="contact.message.label">내용 (Message)</label>
             <textarea
               id="message"
               name="message"
+              data-i18n-placeholder="contact.message.placeholder"
               placeholder="문의 내용을 입력해 주세요"
               required
             ></textarea>
           </div>
           <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
-          <button type="submit" class="btn-submit" id="submitBtn">
+          <button type="submit" class="btn-submit" id="submitBtn" data-i18n="contact.submit">
             <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
             Send Message
           </button>
@@ -1236,13 +1276,13 @@
           <div class="success-icon">
             <i class="fa-solid fa-check" aria-hidden="true"></i>
           </div>
-          <div class="success-title">전송 완료</div>
-          <p class="success-desc">
+          <div class="success-title" data-i18n="contact.success.title">전송 완료</div>
+          <p class="success-desc" data-i18n-html="contact.success.desc">
             메시지가 성공적으로 전달되었습니다.<br>
             <strong>Gijin.kim@hyosung.com</strong> 으로 수신되었으며,<br>
             빠른 시일 내에 답변 드리겠습니다. 감사합니다.
           </p>
-          <button class="btn-retry" id="retryBtn">
+          <button class="btn-retry" id="retryBtn" data-i18n="contact.retry">
             <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
             다른 문의하기
           </button>
@@ -1254,17 +1294,159 @@
   <!-- ── Footer ───────────────────────────────────────────── -->
   <footer>
     <div class="footer-name">Gijin <em>Kim</em></div>
-    <div class="footer-sub">Senior Software Engineer &amp; Technical Strategist · Hyosung TNS</div>
-    <div class="footer-sub-sm">
+    <div class="footer-sub" data-i18n="footer.sub">Senior Software Engineer &amp; Technical Strategist · Hyosung TNS</div>
+    <div class="footer-sub-sm" data-i18n="footer.creds">
       AI Engineering M.S. · Information Security M.S. · PMP · CISA · CCNA · SCJP
     </div>
-    <div class="footer-line">
-      © <span id="footerYear"></span> Gijin Kim · Built with semantic HTML5 · All CDN dependencies · Mobile-first responsive
+    <div class="footer-line" data-i18n="footer.line">
+      © 2025 Gijin Kim · Built with semantic HTML5 · All CDN dependencies · Mobile-first responsive
     </div>
   </footer>
 
   <!-- ── Scripts ───────────────────────────────────────────── -->
   <script>
+    // ── i18n Translations ──────────────────────────────────
+    const TRANSLATIONS = {
+      en: {
+        'nav.about': 'About',
+        'nav.experience': 'Experience',
+        'nav.education': 'Education',
+        'nav.certs': 'Certs',
+        'nav.certs.full': 'Certifications',
+        'nav.awards': 'Awards',
+        'nav.skills': 'Skills',
+        'nav.personality': 'Profile',
+        'nav.personality.full': 'Personality Profile',
+        'nav.contact': 'Contact',
+        'hero.badge': 'Hyosung TNS &nbsp;·&nbsp; 25 Years',
+        'hero.title': 'Senior SW Engineer &amp; Technical Strategist',
+        'hero.sub': '25+ years building ATM/Fintech software at Hyosung TNS — from embedded C on CD machines to AI-powered retail kiosks and robot cafes. Two master\'s degrees, 13 professional certifications, and a record of turning complex technical challenges into shipped products.',
+        'hero.quote': '"The way to overcome obstacles?&nbsp; Selection and Focus.<br>Pick the biggest problem. Concentrate on it. The answer will appear."',
+        'hero.stat.exp': 'Years of Experience',
+        'hero.stat.cert': 'Certifications',
+        'hero.stat.awards': 'Awards &amp; Honors',
+        'hero.stat.degrees': 'Master\'s Degrees',
+        'about.label': 'About Me',
+        'about.title': 'Engineer. <span class="a-blue">Leader.</span> <span class="a-green">Builder.</span>',
+        'about.p1': 'I joined Hyosung TNS in 2001 and have spent over two decades engineering financial automation software — starting with CD/ATM firmware and growing into full-stack solution development and technical strategy.',
+        'about.p2': 'Along the way I pursued parallel graduate studies, earning a master\'s in <strong>Information Security</strong> (KNOU, 2018) and a second master\'s in <strong>AI Engineering</strong> (Kookmin University, 2021), driven by a genuine belief that the best engineers keep learning.',
+        'about.p3': 'In 2006 I was featured on the cover of Hyosung\'s company magazine after I independently designed a <strong>Power Controller</strong> that slashed ATM fault-dispatch calls by <strong>85%</strong> — a textbook example of identifying the root cause, selecting the critical fix, and executing it fully. That philosophy still guides my work today.',
+        'about.p4': 'Currently I bridge engineering and business as part of the <strong>Technical Sales Support Team</strong>, building ATM SW licence management systems, conducting technology training for the sales force, and analysing SW RFPs to shape competitive proposals.',
+        'about.hl1.title': 'ATM &amp; Fintech Systems',
+        'about.hl1.sub': '12 yrs CD/ATM dev &amp; ops · ATM management solutions',
+        'about.hl2.title': 'Modern Retail Tech',
+        'about.hl2.sub': 'POS / SCO · AI refrigerator · Robot café · Olive Young SCO',
+        'about.hl3.title': 'AI &amp; Generative Tools',
+        'about.hl3.sub': 'Claude · ChatGPT · Gemini — docs, analysis, code',
+        'about.hl4.title': 'Project Management',
+        'about.hl4.sub': 'PMP certified · Technical RFP analysis · Sales enablement',
+        'about.hl5.title': 'Security &amp; Audit',
+        'about.hl5.sub': 'CISA certified · M.S. Information Security',
+        'about.hl6.title': 'High Drive &amp; Initiative',
+        'about.hl6.sub': 'Cover story: Hyosung Magazine 2006 · Change Leader award',
+        'exp.label': 'Career History',
+        'exp.title': '25 Years at <span class="a-blue">Hyosung TNS</span>',
+        'edu.label': 'Academic Background',
+        'edu.title': 'Two Master\'s. <span class="a-green">Lifelong Learner.</span>',
+        'cert.label': 'Professional Credentials',
+        'cert.title': '13 Certifications — <span class="a-red">4 International</span>',
+        'awards.label': 'Recognition',
+        'awards.title': '8 Awards Over <span class="a-blue">20 Years</span>',
+        'skills.label': 'Technical Skills',
+        'skills.title': 'Languages, <span class="a-blue">Platforms</span> &amp; <span class="a-green">Tools</span>',
+        'personality.label': 'Personality Profile',
+        'personality.title': 'Brain Orientation <span class="a-blue">Suitability Inventory</span>',
+        'contact.label': 'Contact',
+        'contact.title': 'Get in <span class="a-blue">Touch</span>',
+        'contact.subject.label': 'Subject',
+        'contact.subject.placeholder': 'Enter inquiry subject',
+        'contact.email.label': 'Email',
+        'contact.email.placeholder': 'your@email.com',
+        'contact.phone.label': 'Phone',
+        'contact.phone.placeholder': '010-0000-0000',
+        'contact.message.label': 'Message',
+        'contact.message.placeholder': 'Enter inquiry message',
+        'contact.submit': 'Send Message',
+        'contact.sending': 'Sending…',
+        'contact.error': 'Failed to send. Please try again.',
+        'contact.success.title': 'Message Sent',
+        'contact.success.desc': 'Your message has been delivered successfully. It has been received at <strong>Gijin.kim@hyosung.com</strong> and we will respond as soon as possible. Thank you.',
+        'contact.retry': 'Send Another',
+        'footer.sub': 'Senior Software Engineer &amp; Technical Strategist · Hyosung TNS',
+        'footer.creds': 'AI Engineering M.S. · Information Security M.S. · PMP · CISA · CCNA · SCJP',
+        'footer.line': '© {year} Gijin Kim · Built with semantic HTML5 · All CDN dependencies · Mobile-first responsive'
+      },
+      ko: {
+        'nav.about': '소개',
+        'nav.experience': '경력',
+        'nav.education': '학력',
+        'nav.certs': '자격증',
+        'nav.certs.full': '자격증',
+        'nav.awards': '수상',
+        'nav.skills': '기술',
+        'nav.personality': '프로필',
+        'nav.personality.full': '퍼스널리티 프로필',
+        'nav.contact': '연락처',
+        'hero.badge': '효성TNS &nbsp;·&nbsp; 25년',
+        'hero.title': '수석 SW 엔지니어 & 기술 전략가',
+        'hero.sub': '효성TNS에서 25년 이상 ATM/핀테크 소프트웨어를 개발해왔습니다. CD/ATM 펌웨어부터 AI 기반 소매 키오스크, 로봇 카페까지. 2개의 석사 학위, 13개 전문 자격증, 복잡한 기술 과제를 실제 제품으로 만든 경력이 있습니다.',
+        'hero.quote': '"장애물을 넘는 방법은?&nbsp; 선택과 집중입니다.<br>가장 큰 문제를 선택하고, 거기에 집중하면 답이 보입니다."',
+        'hero.stat.exp': '년 경력',
+        'hero.stat.cert': '자격증',
+        'hero.stat.awards': '수상 실적',
+        'hero.stat.degrees': '석사 학위',
+        'about.label': '소개',
+        'about.title': '엔지니어. <span class="a-blue">리더.</span> <span class="a-green">빌더.</span>',
+        'about.p1': '2001년 효성TNS에 입사하여 20년 이상 금융 자동화 소프트웨어를 개발해왔습니다. CD/ATM 펌웨어로 시작해 풀스택 솔루션 개발과 기술 전략까지 확대했습니다.',
+        'about.p2': '대학원 과정을 병행하여 <strong>정보보안</strong> (한국방송통신대학교, 2018)과 <strong>AI 엔지니어링</strong> (국민대학교, 2021) 석사학위를 취득했습니다. 최고의 엔지니어는 계속 배운다는 철학을 실천하고 있습니다.',
+        'about.p3': '2006년 독립적으로 설계한 <strong>Power Controller</strong>로 ATM 고장 신고 콜을 <strong>85%</strong> 감소시켜 효성TNS 사보 표지에 소개되었습니다. 근본 원인을 파악하고 핵심 해결책을 선택하여 완전히 실행하는 철학이 지금도 제 일의 기본입니다.',
+        'about.p4': '현재는 <strong>기술영업지원팀</strong>에서 기술과 사업을 연결하는 역할을 하고 있습니다. ATM SW 라이선스 관리 시스템 개발, 영업팀 기술 교육, SW RFP 분석을 통한 경쟁 제안서 작성 등을 담당하고 있습니다.',
+        'about.hl1.title': 'ATM & 핀테크 시스템',
+        'about.hl1.sub': '12년 CD/ATM 개발 & 운영 · ATM 관리 솔루션',
+        'about.hl2.title': '현대 소매 기술',
+        'about.hl2.sub': 'POS / SCO · AI 냉장고 · 로봇 카페 · 올리브영 SCO',
+        'about.hl3.title': 'AI & 생성형 도구',
+        'about.hl3.sub': 'Claude · ChatGPT · Gemini — 문서, 분석, 코드',
+        'about.hl4.title': '프로젝트 관리',
+        'about.hl4.sub': 'PMP 자격증 · 기술 RFP 분석 · 영업 지원',
+        'about.hl5.title': '보안 & 감사',
+        'about.hl5.sub': 'CISA 자격증 · 정보보안 석사',
+        'about.hl6.title': '높은 추진력 & 주도성',
+        'about.hl6.sub': '효성TNS 사보 표지(2006년) · 변화 리더 상',
+        'exp.label': '경력',
+        'exp.title': '효성TNS <span class="a-blue">25년</span>',
+        'edu.label': '학력',
+        'edu.title': '석사 <span class="a-green">2개. 평생 학습자.</span>',
+        'cert.label': '전문 자격증',
+        'cert.title': '13개 자격증 — <span class="a-red">국제 4개</span>',
+        'awards.label': '수상',
+        'awards.title': '<span class="a-blue">20년</span> 간 8개 수상',
+        'skills.label': '기술',
+        'skills.title': '언어, <span class="a-blue">플랫폼</span> & <span class="a-green">도구</span>',
+        'personality.label': '퍼스널리티 프로필',
+        'personality.title': '뇌 지향 <span class="a-blue">적합성 검사</span>',
+        'contact.label': '연락처',
+        'contact.title': '<span class="a-blue">연락</span> 주세요',
+        'contact.subject.label': '제목 (Subject)',
+        'contact.subject.placeholder': '문의 제목을 입력해 주세요',
+        'contact.email.label': '이메일 (Email)',
+        'contact.email.placeholder': 'your@email.com',
+        'contact.phone.label': '연락처 (Phone)',
+        'contact.phone.placeholder': '010-0000-0000',
+        'contact.message.label': '내용 (Message)',
+        'contact.message.placeholder': '문의 내용을 입력해 주세요',
+        'contact.submit': '메시지 전송',
+        'contact.sending': '전송 중…',
+        'contact.error': '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.',
+        'contact.success.title': '전송 완료',
+        'contact.success.desc': '메시지가 성공적으로 전달되었습니다.<br><strong>Gijin.kim@hyosung.com</strong>으로 수신되었으며,<br>빠른 시일 내에 답변 드리겠습니다. 감사합니다.',
+        'contact.retry': '다른 문의하기',
+        'footer.sub': '수석 소프트웨어 엔지니어 & 기술 전략가 · 효성TNS',
+        'footer.creds': 'AI 엔지니어링 석사 · 정보보안 석사 · PMP · CISA · CCNA · SCJP',
+        'footer.line': '© {year} Gijin Kim · Semantic HTML5 · CDN 의존성 · 모바일 우선 반응형'
+      }
+    };
+
     // ── EmailJS 설정 ────────────────────────────────────────
     // ▶ 설정 방법:
     //   1. https://www.emailjs.com 무료 계정 생성
@@ -1283,7 +1465,57 @@
     const EMAILJS_TEMPLATE_ID = 'template_wpwphaq';  // Email Templates > Template ID
 
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // ── i18n Engine ────────────────────────────────────────
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyTranslations(lang) {
+      const t = TRANSLATIONS[lang];
+      if (!t) return;
+
+      // 일반 텍스트 노드
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      // innerHTML이 필요한 요소 (마크업 포함)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      // placeholder 속성
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (t[key] !== undefined) el.placeholder = t[key];
+      });
+
+      // footer line: {year} 토큰 치환
+      const footerLine = document.querySelector('[data-i18n="footer.line"]');
+      if (footerLine && t['footer.line']) {
+        footerLine.textContent = t['footer.line'].replace('{year}', new Date().getFullYear());
+      }
+
+      // <html lang> 속성 업데이트
+      document.documentElement.lang = lang;
+
+      // 토글 버튼 라벨 업데이트
+      document.getElementById('langLabel').textContent = lang === 'en' ? '한국어' : 'English';
+
+      // localStorage 저장
+      localStorage.setItem('lang', lang);
+      currentLang = lang;
+    }
+
+    function toggleLang() {
+      applyTranslations(currentLang === 'en' ? 'ko' : 'en');
+    }
+
+    document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+    // 페이지 로드 시 저장된 언어 적용 (나머지 JS 초기화 전)
+    applyTranslations(currentLang);
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -1291,7 +1523,7 @@
       const status = document.getElementById('formStatus');
 
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Sending…';
+      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> ${TRANSLATIONS[currentLang]['contact.sending']}`;
       status.className = 'form-status';
       status.textContent = '';
 
@@ -1311,9 +1543,9 @@
         })
         .catch(() => {
           status.className = 'form-status error';
-          status.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+          status.textContent = TRANSLATIONS[currentLang]['contact.error'];
           btn.disabled = false;
-          btn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message';
+          btn.innerHTML = `<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> ${TRANSLATIONS[currentLang]['contact.submit']}`;
         });
     });
 
