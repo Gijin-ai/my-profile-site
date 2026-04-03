@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0d0d'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='30' font-weight='700' fill='%234d87ff'%3EGK%3C/text%3E%3C/svg%3E">
   <title>Gijin Kim — Senior SW Engineer &amp; Technical Strategist</title>
   <meta name="description" content="25-year veteran software engineer at Hyosung TNS. ATM/Fintech, AI, Embedded Systems, POS/SCO, and technical leadership.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     /* ── Variables ───────────────────────────────────────── */
     :root {
@@ -34,23 +34,71 @@
       --red-lt:     #ff4d60;
       --green:      #00a86b;
       --green-lt:   #00d484;
-      --mono:       'JetBrains Mono', monospace;
+      --mono:       Consolas, 'SFMono-Regular', Menlo, Monaco, monospace;
     }
 
     /* ── Reset ───────────────────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: Inter, 'Segoe UI', Arial, system-ui, sans-serif;
       color: var(--black);
       background: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
     }
     html[lang="ko"] body {
-      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Segoe UI', Arial, system-ui, sans-serif;
       word-break: keep-all;
     }
+
+    /* Local icon fallback to avoid third-party CSS dependencies */
+    .fa-solid, .fa-brands {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.1em;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1;
+      vertical-align: -0.08em;
+    }
+    .fa-solid::before, .fa-brands::before { display: inline-block; }
+    .fa-spin { animation: spin 1s linear infinite; }
+    .fa-envelope::before { content: '✉'; }
+    .fa-circle-notch::before { content: '◌'; }
+    .fa-microchip::before { content: '▣'; }
+    .fa-robot::before { content: '◎'; }
+    .fa-brain::before { content: '◐'; }
+    .fa-chart-gantt::before { content: '▤'; }
+    .fa-shield-halved::before { content: '◩'; }
+    .fa-person-running::before { content: '→'; }
+    .fa-globe::before { content: '◎'; }
+    .fa-award::before { content: '★'; }
+    .fa-java::before { content: 'J'; }
+    .fa-network-wired::before { content: '⊞'; }
+    .fa-certificate::before { content: '◆'; }
+    .fa-computer::before { content: '▣'; }
+    .fa-house-signal::before { content: '⌂'; }
+    .fa-chart-bar::before { content: '▥'; }
+    .fa-file-code::before { content: '</>'; }
+    .fa-hard-hat::before { content: '▲'; }
+    .fa-car::before { content: '▶'; }
+    .fa-star::before { content: '★'; }
+    .fa-calendar-check::before { content: '◫'; }
+    .fa-trophy::before { content: '◆'; }
+    .fa-lightbulb::before { content: '◉'; }
+    .fa-bolt::before { content: '⚡'; }
+    .fa-medal::before { content: '✦'; }
+    .fa-code::before { content: '</>'; }
+    .fa-layer-group::before { content: '▤'; }
+    .fa-server::before { content: '▥'; }
+    .fa-database::before { content: '●'; }
+    .fa-wand-magic-sparkles::before { content: '✦'; }
+    .fa-briefcase::before { content: '▣'; }
+    .fa-paper-plane::before { content: '➤'; }
+    .fa-check::before { content: '✓'; }
+    .fa-rotate-left::before { content: '↺'; }
 
     /* ── Utilities ───────────────────────────────────────── */
     .container { max-width: 1100px; margin: 0 auto; }
@@ -115,8 +163,8 @@
     /* ── Language Toggle ────────────────────────────────── */
     .lang-en { display: inline; }
     .lang-ko { display: none; }
-    body.lang-ko .lang-en { display: none !important; }
-    body.lang-ko .lang-ko { display: inline; }
+    body.is-ko .lang-en { display: none !important; }
+    body.is-ko .lang-ko { display: inline; }
 
     .lang-toggle {
       background: rgba(255,255,255,.08);
@@ -657,74 +705,6 @@
       background: var(--dark); color: rgba(255,255,255,.4);
       padding: 3rem 2rem; text-align: center;
     }
-    /* ── PDF Modal ─────────────────────────────────────── */
-    .pdf-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 9999;
-      background: rgba(0,0,0,.8);
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      animation: fadeIn .2s;
-    }
-    .pdf-modal.active {
-      display: flex;
-    }
-    .pdf-modal-content {
-      background: white;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 900px;
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 40px rgba(0,0,0,.3);
-    }
-    .pdf-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid #e0e0e0;
-      background: #f5f5f5;
-    }
-    .pdf-modal-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #333;
-    }
-    .pdf-modal-close {
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      color: #999;
-      cursor: pointer;
-      padding: 0;
-      width: 2rem;
-      height: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color .2s;
-    }
-    .pdf-modal-close:hover {
-      color: #333;
-    }
-    .pdf-modal-body {
-      flex: 1;
-      overflow: auto;
-    }
-    .pdf-modal-body iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
 
     .footer-name {
       font-size: 1.5rem; font-weight: 900; color: var(--white);
@@ -758,7 +738,7 @@
     }
   </style>
 </head>
-<body>
+<body class="notranslate" translate="no">
 
   <!-- ── Navigation ──────────────────────────────────────── -->
   <nav aria-label="Main navigation">
@@ -815,10 +795,10 @@
         </blockquote>
         <div class="quote-images">
           <div class="quote-image-box" onclick="window.openImageModal(0)" title="Click to view company magazine page 1">
-            <img src="webzine_page-01.png" alt="Company magazine page 1">
+            <img src="assets/webzine-page-01-thumb.webp" alt="Company magazine page 1" loading="lazy" decoding="async" width="320" height="450">
           </div>
           <div class="quote-image-box" onclick="window.openImageModal(1)" title="Click to view company magazine page 2">
-            <img src="webzine_page-02.png" alt="Company magazine page 2">
+            <img src="assets/webzine-page-02-thumb.webp" alt="Company magazine page 2" loading="lazy" decoding="async" width="320" height="450">
           </div>
         </div>
         <div class="hero-pills">
@@ -851,8 +831,11 @@
       <div class="hero-photo-wrap">
         <img
           class="hero-photo"
-          src="my-profile-gen-side-0405.png"
+          src="assets/profile-photo.webp"
           alt="Gijin Kim — profile photo"
+          decoding="async"
+          width="900"
+          height="1162"
           fetchpriority="high"
         >
         <div class="hero-email"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Gijin.kim@hyosung.com</div>
@@ -1032,38 +1015,38 @@
       <div class="edu-grid">
 
         <div class="edu-card edu-msc fi">
-          <div class="edu-type">Master of Science</div>
-          <div class="edu-school">Kookmin University</div>
-          <div class="edu-major">AI Engineering</div>
-          <div class="edu-period">2019 – 2021</div>
+          <div class="edu-type" data-i18n="edu.card1.type">Master of Science</div>
+          <div class="edu-school" data-i18n="edu.card1.school">Kookmin University</div>
+          <div class="edu-major" data-i18n="edu.card1.major">AI Engineering</div>
+          <div class="edu-period" data-i18n="edu.card1.period">2019 – 2021</div>
         </div>
 
         <div class="edu-card edu-msc fi">
-          <div class="edu-type">Master of Science</div>
-          <div class="edu-school">Korea National Open University</div>
-          <div class="edu-major">Information Security</div>
-          <div class="edu-period">2016 – 2018</div>
+          <div class="edu-type" data-i18n="edu.card2.type">Master of Science</div>
+          <div class="edu-school" data-i18n="edu.card2.school">Korea National Open University</div>
+          <div class="edu-major" data-i18n="edu.card2.major">Information Security</div>
+          <div class="edu-period" data-i18n="edu.card2.period">2016 – 2018</div>
         </div>
 
         <div class="edu-card edu-bsc fi">
-          <div class="edu-type">Bachelor of Science</div>
-          <div class="edu-school">Korea National Open University</div>
-          <div class="edu-major">Computer Science</div>
-          <div class="edu-period">2005 – 2007</div>
+          <div class="edu-type" data-i18n="edu.card3.type">Bachelor of Science</div>
+          <div class="edu-school" data-i18n="edu.card3.school">Korea National Open University</div>
+          <div class="edu-major" data-i18n="edu.card3.major">Computer Science</div>
+          <div class="edu-period" data-i18n="edu.card3.period">2005 – 2007</div>
         </div>
 
         <div class="edu-card edu-bsc fi">
-          <div class="edu-type">Bachelor of Engineering</div>
-          <div class="edu-school">Chonnam National University</div>
-          <div class="edu-major">Agricultural Civil Engineering</div>
-          <div class="edu-period">1993 – 2001</div>
+          <div class="edu-type" data-i18n="edu.card4.type">Bachelor of Engineering</div>
+          <div class="edu-school" data-i18n="edu.card4.school">Chonnam National University</div>
+          <div class="edu-major" data-i18n="edu.card4.major">Agricultural Civil Engineering</div>
+          <div class="edu-period" data-i18n="edu.card4.period">1993 – 2001</div>
         </div>
 
         <div class="edu-card edu-hs fi">
-          <div class="edu-type">High School</div>
-          <div class="edu-school">Hwasun Technical High School</div>
-          <div class="edu-major">Technical / Vocational</div>
-          <div class="edu-period">1989 – 1992</div>
+          <div class="edu-type" data-i18n="edu.card5.type">High School</div>
+          <div class="edu-school" data-i18n="edu.card5.school">Hwasun Technical High School</div>
+          <div class="edu-major" data-i18n="edu.card5.major">Technical / Vocational</div>
+          <div class="edu-period" data-i18n="edu.card5.period">1989 – 1992</div>
         </div>
 
       </div>
@@ -1151,64 +1134,64 @@
         <div class="award-card fi">
           <div class="award-icon aw-gold"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">Special Award</div>
-            <div class="award-date">May 2023</div>
+            <div class="award-name" data-i18n="awards.item1.name">Special Award</div>
+            <div class="award-date" data-i18n="awards.item1.date">May 2023</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">20-Year Long Service Award</div>
-            <div class="award-date">May 2021</div>
+            <div class="award-name" data-i18n="awards.item2.name">20-Year Long Service Award</div>
+            <div class="award-date" data-i18n="awards.item2.date">May 2021</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-green"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">Employee of the Month</div>
-            <div class="award-date">Hyosung TNS · Sep 2016</div>
+            <div class="award-name" data-i18n="awards.item3.name">Employee of the Month</div>
+            <div class="award-date" data-i18n="awards.item3.date">Hyosung TNS · Sep 2016</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-blue"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">10-Year Long Service Award</div>
-            <div class="award-date">May 2011</div>
+            <div class="award-name" data-i18n="awards.item4.name">10-Year Long Service Award</div>
+            <div class="award-date" data-i18n="awards.item4.date">May 2011</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">Outstanding Invention — Bronze</div>
-            <div class="award-date">Dec 2009</div>
+            <div class="award-name" data-i18n="awards.item5.name">Outstanding Invention — Bronze</div>
+            <div class="award-date" data-i18n="awards.item5.date">Dec 2009</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-silver"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">Outstanding Invention — Silver</div>
-            <div class="award-date">Dec 2006</div>
+            <div class="award-name" data-i18n="awards.item6.name">Outstanding Invention — Silver</div>
+            <div class="award-date" data-i18n="awards.item6.date">Dec 2006</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-red"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">Change Leader Award</div>
-            <div class="award-date">Dec 2005</div>
+            <div class="award-name" data-i18n="awards.item7.name">Change Leader Award</div>
+            <div class="award-date" data-i18n="awards.item7.date">Dec 2005</div>
           </div>
         </div>
 
         <div class="award-card fi">
           <div class="award-icon aw-green"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
           <div>
-            <div class="award-name">Company Motto Award</div>
-            <div class="award-date">Jul 2003</div>
+            <div class="award-name" data-i18n="awards.item8.name">Company Motto Award</div>
+            <div class="award-date" data-i18n="awards.item8.date">Jul 2003</div>
           </div>
         </div>
 
@@ -1291,16 +1274,16 @@
     <div class="container">
       <p class="sec-label fi" data-i18n="personality.label">Personality Profile</p>
       <h2 class="sec-title fi" data-i18n-html="personality.title">Brain Orientation <span class="a-blue">Suitability Inventory</span></h2>
-      <p class="sec-intro fi">
+      <p class="sec-intro fi" data-i18n="personality.intro">
         Results from the BOSI (Brain Orientation Suitability Inventory) assessment —
         a neuroscience-based aptitude framework by Brain OS Institute.
       </p>
       <div class="bosi-grid">
 
         <div class="bosi-card fi">
-          <div class="bosi-label">Brain Type</div>
-          <div class="bosi-type">Left-brain Conceptual Thinker (Type 7)</div>
-          <p class="bosi-desc">
+          <div class="bosi-label" data-i18n="personality.card1.label">Brain Type</div>
+          <div class="bosi-type" data-i18n="personality.card1.type">Left-brain Conceptual Thinker (Type 7)</div>
+          <p class="bosi-desc" data-i18n="personality.card1.desc">
             Sits at the left-right brain boundary — combines a humanistic mindset with
             scientific thinking. Visualises solutions as mental blueprints before acting
             (concept-designer tendency). Builds personal logical frameworks to understand
@@ -1309,9 +1292,9 @@
         </div>
 
         <div class="bosi-card fi">
-          <div class="bosi-label">Brain / Environment Adaptation</div>
-          <div class="bosi-type">Emotionally Self-Restrained — Practical Creative</div>
-          <p class="bosi-desc">
+          <div class="bosi-label" data-i18n="personality.card2.label">Brain / Environment Adaptation</div>
+          <div class="bosi-type" data-i18n="personality.card2.type">Emotionally Self-Restrained — Practical Creative</div>
+          <p class="bosi-desc" data-i18n="personality.card2.desc">
             A wise pragmatist who balances ideals with reality. Knows what to pursue and
             what to set aside. Excels at taking others' concepts and turning them into
             real, working solutions. Neither lost in dreams nor trapped in routine.
@@ -1319,10 +1302,10 @@
         </div>
 
         <div class="bosi-card fi">
-          <div class="bosi-label">Initiative Index <span class="bosi-score">7 / 10</span></div>
+          <div class="bosi-label" data-i18n-html="personality.card3.label">Initiative Index <span class="bosi-score">7 / 10</span></div>
           <div class="bosi-bar"><div class="bosi-fill" style="width:70%"></div></div>
-          <div class="bosi-type">Goal-Oriented Leader</div>
-          <p class="bosi-desc">
+          <div class="bosi-type" data-i18n="personality.card3.type">Goal-Oriented Leader</div>
+          <p class="bosi-desc" data-i18n="personality.card3.desc">
             Steps forward without resistance or ego. Intuitively aligns personal success
             with organisational success — a win-win orientation. Recognised as a leader
             by peers without needing to dominate.
@@ -1330,10 +1313,10 @@
         </div>
 
         <div class="bosi-card fi">
-          <div class="bosi-label">Sociality Index <span class="bosi-score">7 / 10</span></div>
+          <div class="bosi-label" data-i18n-html="personality.card4.label">Sociality Index <span class="bosi-score">7 / 10</span></div>
           <div class="bosi-bar"><div class="bosi-fill" style="width:70%"></div></div>
-          <div class="bosi-type">Relationship-Centred</div>
-          <p class="bosi-desc">
+          <div class="bosi-type" data-i18n="personality.card4.type">Relationship-Centred</div>
+          <p class="bosi-desc" data-i18n="personality.card4.desc">
             Energised by people. Strong empathy and genuine care for others' perspectives.
             Naturally earns "good person" feedback everywhere. Puts others' viewpoints
             before his own — a natural foundation for respected leadership.
@@ -1341,10 +1324,10 @@
         </div>
 
         <div class="bosi-card fi">
-          <div class="bosi-label">Execution Index <span class="bosi-score">6 / 10</span></div>
+          <div class="bosi-label" data-i18n-html="personality.card5.label">Execution Index <span class="bosi-score">6 / 10</span></div>
           <div class="bosi-bar"><div class="bosi-fill" style="width:60%; background: linear-gradient(90deg, var(--green), var(--green-lt));"></div></div>
-          <div class="bosi-type">Efficient Practitioner</div>
-          <p class="bosi-desc">
+          <div class="bosi-type" data-i18n="personality.card5.type">Efficient Practitioner</div>
+          <p class="bosi-desc" data-i18n="personality.card5.desc">
             Outstanding ability to distinguish what matters from what doesn't, then pour
             full focus into the critical path. Self-directed — acts without being told
             on things that count. Sets direction precisely, then executes at full speed.
@@ -1352,10 +1335,10 @@
         </div>
 
         <div class="bosi-card fi">
-          <div class="bosi-label">Physical Activity Index <span class="bosi-score">9 / 10</span></div>
+          <div class="bosi-label" data-i18n-html="personality.card6.label">Physical Activity Index <span class="bosi-score">9 / 10</span></div>
           <div class="bosi-bar"><div class="bosi-fill" style="width:90%; background: linear-gradient(90deg, var(--red), var(--red-lt));"></div></div>
-          <div class="bosi-type">Sports Type — High Drive</div>
-          <p class="bosi-desc">
+          <div class="bosi-type" data-i18n="personality.card6.type">Sports Type — High Drive</div>
+          <p class="bosi-desc" data-i18n="personality.card6.desc">
             Exceptionally high physical energy that supports both deep analytical work
             and creative, intuitive tasks simultaneously. Hurdling was literally on a
             company magazine cover — selection and focus in physical form.
@@ -1453,21 +1436,34 @@
     </div>
   </footer>
 
-  <!-- ── PDF Modal ────────────────────────────────────────── -->
-  <div class="pdf-modal" id="pdfModal">
-    <div class="pdf-modal-content">
-      <div class="pdf-modal-header">
-        <div class="pdf-modal-title">Hyosung Magazine (June 2006)</div>
-        <button class="pdf-modal-close" id="pdfModalClose" aria-label="Close">&times;</button>
-      </div>
-      <div class="pdf-modal-body">
-        <iframe src="ref-my-profile/회사화보/webzine_200602.pdf#page=1" title="Hyosung Magazine PDF"></iframe>
-      </div>
-    </div>
-  </div>
-
   <!-- ── Scripts ───────────────────────────────────────────── -->
   <script>
+    window.addEventListener('error', (event) => {
+      const body = document.body;
+      if (!body) return;
+
+      let banner = document.getElementById('runtimeErrorBanner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'runtimeErrorBanner';
+        banner.style.position = 'fixed';
+        banner.style.left = '12px';
+        banner.style.right = '12px';
+        banner.style.bottom = '12px';
+        banner.style.zIndex = '20000';
+        banner.style.padding = '10px 12px';
+        banner.style.borderRadius = '8px';
+        banner.style.background = 'rgba(232,0,26,.92)';
+        banner.style.color = '#fff';
+        banner.style.font = '12px/1.5 monospace';
+        banner.style.whiteSpace = 'pre-wrap';
+        banner.style.boxShadow = '0 8px 24px rgba(0,0,0,.2)';
+        body.appendChild(banner);
+      }
+
+      banner.textContent = `Runtime error: ${event.message}`;
+    });
+
     // ── i18n Translations ──────────────────────────────────
     const TRANSLATIONS = {
       en: {
@@ -1511,14 +1507,69 @@
         'exp.title': '25 Years at <span class="a-blue">Hyosung TNS</span>',
         'edu.label': 'Academic Background',
         'edu.title': 'Two Master\'s. <span class="a-green">Lifelong Learner.</span>',
+        'edu.card1.type': 'Master of Science',
+        'edu.card1.school': 'Kookmin University',
+        'edu.card1.major': 'AI Engineering',
+        'edu.card1.period': '2019 – 2021',
+        'edu.card2.type': 'Master of Science',
+        'edu.card2.school': 'Korea National Open University',
+        'edu.card2.major': 'Information Security',
+        'edu.card2.period': '2016 – 2018',
+        'edu.card3.type': 'Bachelor of Science',
+        'edu.card3.school': 'Korea National Open University',
+        'edu.card3.major': 'Computer Science',
+        'edu.card3.period': '2005 – 2007',
+        'edu.card4.type': 'Bachelor of Engineering',
+        'edu.card4.school': 'Chonnam National University',
+        'edu.card4.major': 'Agricultural Civil Engineering',
+        'edu.card4.period': '1993 – 2001',
+        'edu.card5.type': 'High School',
+        'edu.card5.school': 'Hwasun Technical High School',
+        'edu.card5.major': 'Technical / Vocational',
+        'edu.card5.period': '1989 – 1992',
         'cert.label': 'Professional Credentials',
         'cert.title': '13 Certifications — <span class="a-red">4 International</span>',
         'awards.label': 'Recognition',
         'awards.title': '8 Awards Over <span class="a-blue">20 Years</span>',
+        'awards.item1.name': 'Special Award',
+        'awards.item1.date': 'May 2023',
+        'awards.item2.name': '20-Year Long Service Award',
+        'awards.item2.date': 'May 2021',
+        'awards.item3.name': 'Employee of the Month',
+        'awards.item3.date': 'Hyosung TNS · Sep 2016',
+        'awards.item4.name': '10-Year Long Service Award',
+        'awards.item4.date': 'May 2011',
+        'awards.item5.name': 'Outstanding Invention — Bronze',
+        'awards.item5.date': 'Dec 2009',
+        'awards.item6.name': 'Outstanding Invention — Silver',
+        'awards.item6.date': 'Dec 2006',
+        'awards.item7.name': 'Change Leader Award',
+        'awards.item7.date': 'Dec 2005',
+        'awards.item8.name': 'Company Motto Award',
+        'awards.item8.date': 'Jul 2003',
         'skills.label': 'Technical Skills',
         'skills.title': 'Languages, <span class="a-blue">Platforms</span> &amp; <span class="a-green">Tools</span>',
         'personality.label': 'Personality Profile',
         'personality.title': 'Brain Orientation <span class="a-blue">Suitability Inventory</span>',
+        'personality.intro': 'Results from the BOSI (Brain Orientation Suitability Inventory) assessment — a neuroscience-based aptitude framework by Brain OS Institute.',
+        'personality.card1.label': 'Brain Type',
+        'personality.card1.type': 'Left-brain Conceptual Thinker (Type 7)',
+        'personality.card1.desc': 'Sits at the left-right brain boundary — combines a humanistic mindset with scientific thinking. Visualises solutions as mental blueprints before acting (concept-designer tendency). Builds personal logical frameworks to understand and interpret the world. Drawn equally to technology and ideas.',
+        'personality.card2.label': 'Brain / Environment Adaptation',
+        'personality.card2.type': 'Emotionally Self-Restrained — Practical Creative',
+        'personality.card2.desc': 'A wise pragmatist who balances ideals with reality. Knows what to pursue and what to set aside. Excels at taking others\' concepts and turning them into real, working solutions. Neither lost in dreams nor trapped in routine.',
+        'personality.card3.label': 'Initiative Index <span class="bosi-score">7 / 10</span>',
+        'personality.card3.type': 'Goal-Oriented Leader',
+        'personality.card3.desc': 'Steps forward without resistance or ego. Intuitively aligns personal success with organisational success — a win-win orientation. Recognised as a leader by peers without needing to dominate.',
+        'personality.card4.label': 'Sociality Index <span class="bosi-score">7 / 10</span>',
+        'personality.card4.type': 'Relationship-Centred',
+        'personality.card4.desc': 'Energised by people. Strong empathy and genuine care for others\' perspectives. Naturally earns "good person" feedback everywhere. Puts others\' viewpoints before his own — a natural foundation for respected leadership.',
+        'personality.card5.label': 'Execution Index <span class="bosi-score">6 / 10</span>',
+        'personality.card5.type': 'Efficient Practitioner',
+        'personality.card5.desc': 'Outstanding ability to distinguish what matters from what doesn\'t, then pour full focus into the critical path. Self-directed — acts without being told on things that count. Sets direction precisely, then executes at full speed.',
+        'personality.card6.label': 'Physical Activity Index <span class="bosi-score">9 / 10</span>',
+        'personality.card6.type': 'Sports Type — High Drive',
+        'personality.card6.desc': 'Exceptionally high physical energy that supports both deep analytical work and creative, intuitive tasks simultaneously. Hurdling was literally on a company magazine cover — selection and focus in physical form.',
         'contact.label': 'Contact',
         'contact.title': 'Get in <span class="a-blue">Touch</span>',
         'contact.subject.label': 'Subject',
@@ -1560,10 +1611,10 @@
         'hero.stat.degrees': '석사 학위',
         'about.label': '소개',
         'about.title': '엔지니어. <span class="a-blue">리더.</span> <span class="a-green">IT 전문가.</span>',
-        'about.p1': '2001년 효성TNS에 입사하여 20년 이상 금융 자동화 소프트웨어를 개발해왔습니다. CD/ATM 펌웨어로 시작해 풀스택 솔루션 개발과 기술 전략까지 확대했습니다.',
-        'about.p2': '대학원 과정을 병행하여 <strong>정보보안</strong> (한국방송통신대학교, 2018)과 <strong>AI 엔지니어링</strong> (국민대학교, 2021) 석사학위를 취득했습니다. 최고의 엔지니어는 계속 배운다는 철학을 실천하고 있습니다.',
-        'about.p3': '2006년 독립적으로 설계한 <strong>Power Controller</strong>로 ATM 고장 신고 콜을 <strong>85%</strong> 감소시켜 효성TNS 사보 표지에 소개되었습니다. 근본 원인을 파악하고 핵심 해결책을 선택하여 완전히 실행하는 철학이 지금도 제 일의 기본입니다.',
-        'about.p4': '현재는 <strong>기술영업지원팀</strong>에서 기술과 사업을 연결하는 역할을 하고 있습니다. ATM SW 라이선스 관리 시스템 개발, 영업팀 기술 교육, SW RFP 분석을 통한 경쟁 제안서 작성 등을 담당하고 있습니다.',
+        'about.p1': '2001년 효성TNS에 입사한 이후 20년 이상 금융 자동화 소프트웨어 분야에서 개발과 혁신을 이어왔습니다. CD/ATM 펌웨어 개발로 커리어를 시작해 ATM 소프트웨어 전반에 대한 이해를 넓혔고, 이후 풀스택 솔루션 개발과 기술 전략 수립까지 역할을 확장해왔습니다.',
+        'about.p2': '이처럼 실무 경험을 넓혀가는 과정에서도 배움을 멈추지 않고, 대학원 과정을 병행하며 <strong>정보보안</strong>(한국방송통신대학교, 2018)과 <strong>AI 엔지니어링</strong>(국민대학교, 2021) 석사학위를 취득했습니다. 최고의 엔지니어는 끊임없이 배우고 성장해야 한다는 철학을 바탕으로, 기술 변화에 대응할 수 있는 전문성을 꾸준히 쌓아왔습니다.',
+        'about.p3': '이러한 학습과 실행의 자세는 실제 성과로도 이어졌습니다. 2006년에는 독립적으로 설계한 <strong>Power Controller</strong>를 통해 ATM 고장 신고 콜을 <strong>85%</strong> 감소시켜 효성TNS 사보 표지에 소개되었으며, 이를 통해 근본 원인을 정확히 파악하고 핵심 해결책을 끝까지 실행하는 태도가 제 업무 철학의 중심으로 자리 잡게 되었습니다.',
+        'about.p4': '이 같은 개발 경험과 문제 해결 역량을 바탕으로, 현재는 <strong>기술영업지원팀</strong>에서 기술과 사업을 연결하는 역할을 맡고 있습니다. ATM SW 라이선스 관리 시스템 개발, 영업 조직 대상 기술 교육, SW RFP 분석 및 경쟁 제안서 작성 등을 수행하며, 기술 역량을 실제 사업 성과로 연결하는 데 집중하고 있습니다.',
         'about.hl1.title': 'ATM & 핀테크 시스템',
         'about.hl1.sub': '12년 CD/ATM 개발 & 운영 · ATM 관리 솔루션',
         'about.hl2.title': '리테일 개발 기술',
@@ -1580,14 +1631,69 @@
         'exp.title': '효성TNS <span class="a-blue">25년</span>',
         'edu.label': '학력',
         'edu.title': '석사 <span class="a-green">2개. 끊임없이 배우고 성장하는 IT 전문가.</span>',
+        'edu.card1.type': '석사',
+        'edu.card1.school': '국민대학교',
+        'edu.card1.major': '소프트웨어융합대학원 인공지능 전공',
+        'edu.card1.period': '2019 – 2021',
+        'edu.card2.type': '석사',
+        'edu.card2.school': '한국방송통신대학교',
+        'edu.card2.major': '정보보호대학원 정보보호 전공',
+        'edu.card2.period': '2016 – 2018',
+        'edu.card3.type': '이학사',
+        'edu.card3.school': '한국방송통신대학교',
+        'edu.card3.major': '컴퓨터공학과',
+        'edu.card3.period': '2005 – 2007',
+        'edu.card4.type': '공학사',
+        'edu.card4.school': '전남대학교',
+        'edu.card4.major': '농업토목공학',
+        'edu.card4.period': '1993 – 2001',
+        'edu.card5.type': '고등학교',
+        'edu.card5.school': '화순기술고등학교',
+        'edu.card5.major': '기술계',
+        'edu.card5.period': '1989 – 1992',
         'cert.label': '전문 자격증',
         'cert.title': '13개 자격증 — <span class="a-red">국제 4개</span>',
         'awards.label': '수상',
         'awards.title': '<span class="a-blue">20년</span> 간 8개 수상',
+        'awards.item1.name': '특별상',
+        'awards.item1.date': '2023년 5월',
+        'awards.item2.name': '20년 장기근속상',
+        'awards.item2.date': '2021년 5월',
+        'awards.item3.name': '이달의 우수사원상',
+        'awards.item3.date': '효성TNS · 2016년 9월',
+        'awards.item4.name': '10년 장기근속상',
+        'awards.item4.date': '2011년 5월',
+        'awards.item5.name': '우수제안상 동상',
+        'awards.item5.date': '2009년 12월',
+        'awards.item6.name': '우수제안상 은상',
+        'awards.item6.date': '2006년 12월',
+        'awards.item7.name': '2025년 효성그룹 체인지 리더상',
+        'awards.item7.date': '2005년 12월',
+        'awards.item8.name': '사훈실천상',
+        'awards.item8.date': '2003년 7월',
         'skills.label': '기술',
         'skills.title': '언어, <span class="a-blue">플랫폼</span> & <span class="a-green">도구</span>',
         'personality.label': '퍼스널리티 프로필',
         'personality.title': '뇌 지향 <span class="a-blue">적합성 검사</span>',
+        'personality.intro': 'Brain OS Institute의 신경과학 기반 적성 프레임워크인 BOSI(Brain Orientation Suitability Inventory) 검사 결과입니다.',
+        'personality.card1.label': '두뇌 유형',
+        'personality.card1.type': '좌뇌형 개념사고가 (7유형)',
+        'personality.card1.desc': '좌뇌와 우뇌의 경계 지점에 위치한 유형으로, 인문학적 감수성과 과학적 사고를 함께 갖고 있습니다. 행동에 앞서 해결책을 머릿속 설계도로 시각화하는 경향이 강하며, 스스로의 논리 체계를 구축해 세상을 이해하고 해석합니다. 기술과 아이디어 양쪽에 모두 끌리는 성향입니다.',
+        'personality.card2.label': '두뇌 / 환경 적응성',
+        'personality.card2.type': '감정 절제형 실용 창의가',
+        'personality.card2.desc': '이상과 현실의 균형을 잘 맞추는 현명한 실용주의자입니다. 무엇을 추구하고 무엇을 내려놓아야 하는지 분명히 알고 있으며, 다른 사람의 아이디어를 실제로 작동하는 결과물로 바꾸는 데 강점을 보입니다. 공상에 빠지지도, 반복적 일상에 갇히지도 않는 유형입니다.',
+        'personality.card3.label': '주도성 지수 <span class="bosi-score">7 / 10</span>',
+        'personality.card3.type': '목표지향형 리더',
+        'personality.card3.desc': '저항감이나 과도한 자의식 없이 먼저 앞으로 나서는 편입니다. 개인의 성공과 조직의 성공을 직관적으로 연결해 이해하는 윈윈 지향성을 가지며, 타인을 지배하지 않아도 주변으로부터 자연스럽게 리더로 인정받는 유형입니다.',
+        'personality.card4.label': '사회성 지수 <span class="bosi-score">7 / 10</span>',
+        'personality.card4.type': '관계중심형',
+        'personality.card4.desc': '사람을 통해 에너지를 얻는 편이며, 타인의 관점에 대한 공감력과 배려가 강합니다. 어디서든 "좋은 사람"이라는 평가를 자연스럽게 얻고, 자신의 입장보다 타인의 시각을 먼저 고려하는 태도가 존중받는 리더십의 기반이 됩니다.',
+        'personality.card5.label': '실행력 지수 <span class="bosi-score">6 / 10</span>',
+        'personality.card5.type': '효율적 실행가',
+        'personality.card5.desc': '중요한 것과 중요하지 않은 것을 구분해 핵심 경로에 집중하는 능력이 뛰어납니다. 중요한 일은 지시를 기다리지 않고 스스로 움직이며, 방향을 정확히 잡은 뒤에는 빠른 속도로 실행에 옮기는 스타일입니다.',
+        'personality.card6.label': '신체활동 지수 <span class="bosi-score">9 / 10</span>',
+        'personality.card6.type': '스포츠형 고활동가',
+        'personality.card6.desc': '깊이 있는 분석 업무와 직관적·창의적 작업을 동시에 지탱할 만큼 신체 에너지가 매우 높은 편입니다. 허들 활동이 실제로 회사 매거진 표지에 실릴 정도로, 선택과 집중이 신체적 실행력으로도 드러나는 유형입니다.',
         'contact.label': '연락처',
         'contact.title': '<span class="a-blue">연락</span> 주세요',
         'contact.subject.label': '제목 (Subject)',
@@ -1626,11 +1732,48 @@
     const EMAILJS_PUBLIC_KEY  = 'oTCwSVG-NBiwQu8nU';   // Account > Public Key
     const EMAILJS_SERVICE_ID  = 'service_462b5hd';   // Email Services > Service ID
     const EMAILJS_TEMPLATE_ID = 'template_wpwphaq';  // Email Templates > Template ID
+    let emailjsLoader;
 
-    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    function ensureEmailJs() {
+      if (window.emailjs) return Promise.resolve(window.emailjs);
+      if (emailjsLoader) return emailjsLoader;
+
+      emailjsLoader = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+        script.onload = () => {
+          if (!window.emailjs) {
+            reject(new Error('EmailJS did not initialize.'));
+            return;
+          }
+          window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+          resolve(window.emailjs);
+        };
+        script.onerror = () => reject(new Error('Failed to load EmailJS.'));
+        document.head.appendChild(script);
+      });
+
+      return emailjsLoader;
+    }
 
     // ── i18n Engine ────────────────────────────────────────
-    let currentLang = localStorage.getItem('lang') || 'en';
+    function safeStorageGet(key, fallback) {
+      try {
+        return localStorage.getItem(key) || fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function safeStorageSet(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (e) {
+        // Ignore storage failures so the page still renders.
+      }
+    }
+
+    let currentLang = safeStorageGet('lang', 'en');
 
     function applyTranslations(lang) {
       const t = TRANSLATIONS[lang];
@@ -1662,12 +1805,15 @@
 
       // <html lang> 속성 업데이트
       document.documentElement.lang = lang;
+      document.body.classList.remove('lang-ko');
+      document.body.classList.toggle('is-ko', lang === 'ko');
 
       // 토글 버튼 라벨 업데이트
-      document.getElementById('langLabel').textContent = lang === 'en' ? '한국어' : 'English';
+      const langLabel = document.getElementById('langLabel');
+      if (langLabel) langLabel.textContent = lang === 'en' ? '한국어' : 'English';
 
       // localStorage 저장
-      localStorage.setItem('lang', lang);
+      safeStorageSet('lang', lang);
       currentLang = lang;
     }
 
@@ -1675,99 +1821,11 @@
       applyTranslations(currentLang === 'en' ? 'ko' : 'en');
     }
 
-    document.getElementById('langToggle').addEventListener('click', toggleLang);
-
-    // 페이지 로드 시 저장된 언어 적용 (나머지 JS 초기화 전)
-    // 초기 언어 적용
-    applyTranslations(currentLang);
-
-    // 페이지 로드 후 콘텐츠 확인 (디버그용)
-    window.addEventListener('load', () => {
-      console.log('Page loaded. Current language:', currentLang);
-      const sections = document.querySelectorAll('section[id]');
-      console.log('Sections found:', sections.length);
-      sections.forEach(section => {
-        const content = section.querySelector('[data-i18n], [data-i18n-html], .timeline, .edu-grid, .cert-cols, .awards-grid, .skills-grid');
-        console.log(`Section #${section.id}:`, content ? 'Has content' : 'No visible content');
-      });
-    });
-
-    // ── PDF Modal Handler ──────────────────────────────────
-    const pdfModal = document.getElementById('pdfModal');
-    const quoteBtn = document.getElementById('quoteBtn');
-    const pdfModalClose = document.getElementById('pdfModalClose');
-
-    function openPdfModal() {
-      pdfModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePdfModal() {
-      pdfModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // quoteBtn event listeners removed - element not found
-    pdfModalClose.addEventListener('click', closePdfModal);
-    pdfModal.addEventListener('click', (e) => {
-      if (e.target === pdfModal) closePdfModal();
-    });
-
-    // ESC 키로 모달 닫기
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
-        closePdfModal();
-      }
-    });
-
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const btn    = document.getElementById('submitBtn');
-      const status = document.getElementById('formStatus');
-
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> ${TRANSLATIONS[currentLang]['contact.sending']}`;
-      status.className = 'form-status';
-      status.textContent = '';
-
-      const form = this;
-      const templateParams = {
-        subject: document.getElementById('subject').value,
-        from_email: document.getElementById('from_email').value,
-        phone: document.getElementById('phone').value,
-        message: document.getElementById('message').value
-      };
-
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then(() => {
-          form.reset();
-          form.style.display = 'none';
-          document.getElementById('successCard').style.display = 'block';
-        })
-        .catch(() => {
-          status.className = 'form-status error';
-          status.textContent = TRANSLATIONS[currentLang]['contact.error'];
-          btn.disabled = false;
-          btn.innerHTML = `<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> ${TRANSLATIONS[currentLang]['contact.submit']}`;
-        });
-    });
-
-    document.getElementById('retryBtn').addEventListener('click', function() {
-      document.getElementById('successCard').style.display = 'none';
-      document.getElementById('contactForm').style.display = 'flex';
-    });
-
-    // Burger menu
-    const burger = document.getElementById('burger');
-    const navMobile = document.getElementById('navMobile');
-    burger.addEventListener('click', () => {
-      const isOpen = burger.classList.toggle('open');
-      navMobile.classList.toggle('open');
-      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      burger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-      navMobile.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    });
     function closeMenu() {
+      const burger = document.getElementById('burger');
+      const navMobile = document.getElementById('navMobile');
+      if (!burger || !navMobile) return;
+
       burger.classList.remove('open');
       navMobile.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
@@ -1775,36 +1833,10 @@
       navMobile.setAttribute('aria-hidden', 'true');
     }
 
-    // Scroll fade-in
-    if ('IntersectionObserver' in window) {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.fi').forEach(el => obs.observe(el));
-    } else {
-      document.querySelectorAll('.fi').forEach(el => el.classList.add('vis'));
-    }
-
-    // Active nav link
-    const sections = document.querySelectorAll('section[id]');
-    const links    = document.querySelectorAll('.nav-links a');
-    if ('IntersectionObserver' in window) {
-      const navObs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            links.forEach(l => l.classList.remove('active'));
-            const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-            if (active) active.classList.add('active');
-          }
-        });
-      }, { rootMargin: '-40% 0px -55% 0px' });
-      sections.forEach(s => navObs.observe(s));
-    }
-
     // Image Modal Functions
     const imageFiles = [
-      'webzine_page-01.png',
-      'webzine_page-02.png'
+      'assets/webzine-page-01.webp',
+      'assets/webzine-page-02.webp'
     ];
 
     window.openImageModal = function(index) {
@@ -1853,17 +1885,119 @@
       }
     };
 
-    // Close modal on ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('imageModal').classList.contains('active')) {
-        closeImageModal();
+    document.addEventListener('DOMContentLoaded', () => {
+      const langToggle = document.getElementById('langToggle');
+      if (langToggle) {
+        langToggle.addEventListener('click', toggleLang);
       }
-    });
 
-    // Close modal on background click
-    document.getElementById('imageModal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('imageModal')) {
-        closeImageModal();
+      applyTranslations(currentLang);
+
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const btn = document.getElementById('submitBtn');
+          const status = document.getElementById('formStatus');
+          const subject = document.getElementById('subject');
+          const fromEmail = document.getElementById('from_email');
+          const phone = document.getElementById('phone');
+          const message = document.getElementById('message');
+          if (!btn || !status || !subject || !fromEmail || !phone || !message) return;
+
+          btn.disabled = true;
+          btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> ${TRANSLATIONS[currentLang]['contact.sending']}`;
+          status.className = 'form-status';
+          status.textContent = '';
+
+          const form = this;
+          const templateParams = {
+            subject: subject.value,
+            from_email: fromEmail.value,
+            phone: phone.value,
+            message: message.value
+          };
+
+          ensureEmailJs()
+            .then(() => emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams))
+            .then(() => {
+              form.reset();
+              form.style.display = 'none';
+              const successCard = document.getElementById('successCard');
+              if (successCard) successCard.style.display = 'block';
+            })
+            .catch(() => {
+              status.className = 'form-status error';
+              status.textContent = TRANSLATIONS[currentLang]['contact.error'];
+              btn.disabled = false;
+              btn.innerHTML = `<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> ${TRANSLATIONS[currentLang]['contact.submit']}`;
+            });
+        });
+      }
+
+      const retryBtn = document.getElementById('retryBtn');
+      if (retryBtn) {
+        retryBtn.addEventListener('click', () => {
+          const successCard = document.getElementById('successCard');
+          if (successCard) successCard.style.display = 'none';
+          if (contactForm) contactForm.style.display = 'flex';
+        });
+      }
+
+      const burger = document.getElementById('burger');
+      const navMobile = document.getElementById('navMobile');
+      if (burger && navMobile) {
+        burger.addEventListener('click', () => {
+          const isOpen = burger.classList.toggle('open');
+          navMobile.classList.toggle('open');
+          burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          burger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+          navMobile.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('vis');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+        const sections = document.querySelectorAll('section[id]');
+        const links = document.querySelectorAll('.nav-links a');
+        const navObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              links.forEach(l => l.classList.remove('active'));
+              const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+              if (active) active.classList.add('active');
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(s => navObs.observe(s));
+      } else {
+        document.querySelectorAll('.fi').forEach(el => el.classList.add('vis'));
+      }
+
+      document.addEventListener('keydown', (e) => {
+        const imageModal = document.getElementById('imageModal');
+        if (e.key === 'Escape' && imageModal && imageModal.classList.contains('active')) {
+          closeImageModal();
+        }
+      });
+
+      const imageModal = document.getElementById('imageModal');
+      if (imageModal) {
+        imageModal.addEventListener('click', (e) => {
+          if (e.target === imageModal) {
+            closeImageModal();
+          }
+        });
       }
     });
   </script>

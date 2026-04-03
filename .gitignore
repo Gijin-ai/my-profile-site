@@ -1,1 +1,6 @@
-\ref-my-profile\
+ref-my-profile/
+.edge-*/
+edge-shot*.png
+edge-click-ko*.png
+edge-webp.png
+.tmp-check.js
