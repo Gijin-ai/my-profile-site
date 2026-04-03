@@ -1692,7 +1692,19 @@
     document.getElementById('langToggle').addEventListener('click', toggleLang);
 
     // 페이지 로드 시 저장된 언어 적용 (나머지 JS 초기화 전)
+    // 초기 언어 적용
     applyTranslations(currentLang);
+
+    // 페이지 로드 후 콘텐츠 확인 (디버그용)
+    window.addEventListener('load', () => {
+      console.log('Page loaded. Current language:', currentLang);
+      const sections = document.querySelectorAll('section[id]');
+      console.log('Sections found:', sections.length);
+      sections.forEach(section => {
+        const content = section.querySelector('[data-i18n], [data-i18n-html], .timeline, .edu-grid, .cert-cols, .awards-grid, .skills-grid');
+        console.log(`Section #${section.id}:`, content ? 'Has content' : 'No visible content');
+      });
+    });
 
     // ── PDF Modal Handler ──────────────────────────────────
     const pdfModal = document.getElementById('pdfModal');
